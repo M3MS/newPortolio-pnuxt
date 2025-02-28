@@ -1,31 +1,6 @@
-# Prismic + Nuxt Minimal Starter
-
-Want to quickly get started building your own project with [Prismic][prismic] and [Nuxt][nuxt]? This project includes basic configurations and nothing else. The project includes one Rich Text Slice, a homepage, and a dynamic page.
-
-- **Demo**: [Open live demo][live-demo]
-- **Learn more about Prismic and Nuxt**: [Prismic Nuxt Documentation][prismic-docs]
-
-&nbsp;
-
-![Starter screenshot](https://user-images.githubusercontent.com/31219208/228820114-98993841-0b14-40cf-9f39-1b81effe752f.png)
-
-&nbsp;
+# Prismic + Nuxt Portfolio
 
 ## 🚀 Quick Start
-
-To start a new project using this starter, run the following commands in your terminal:
-
-```sh
-npx degit prismicio-community/nuxt-starter-prismic-minimal your-project-name
-cd your-project-name
-npx @slicemachine/init@latest
-```
-
-The commands will do the following:
-
-1. Start a new Nuxt project using this starter.
-2. Ask you to log in to Prismic or [create an account][prismic-sign-up].
-3. Create a new Prismic content repository with sample content.
 
 When you're ready to start your project, run the following command:
 
