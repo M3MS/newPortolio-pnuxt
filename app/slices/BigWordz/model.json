@@ -1,0 +1,16 @@
+{
+  "id": "big_wordz",
+  "type": "SharedSlice",
+  "name": "BigWordz",
+  "description": "BigWordz",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": ""
+    }
+  ]
+}

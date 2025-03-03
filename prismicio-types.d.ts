@@ -4,7 +4,11 @@ import type * as prismic from "@prismicio/client";
 
 type Simplify<T> = { [KeyType in keyof T]: T[KeyType] };
 
-type PageDocumentDataSlicesSlice = RichTextSlice;
+type PageDocumentDataSlicesSlice =
+  | IntroTextSlice
+  | ProjectsListSlice
+  | BigWordzSlice
+  | RichTextSlice;
 
 /**
  * Content for Page documents
@@ -167,6 +171,126 @@ export type AllDocumentTypes =
   | SettingsDocument;
 
 /**
+ * Default variation for BigWordz Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BigWordzSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Record<string, never>,
+  never
+>;
+
+/**
+ * Slice variation for *BigWordz*
+ */
+type BigWordzSliceVariation = BigWordzSliceDefault;
+
+/**
+ * BigWordz Shared Slice
+ *
+ * - **API ID**: `big_wordz`
+ * - **Description**: BigWordz
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type BigWordzSlice = prismic.SharedSlice<
+  "big_wordz",
+  BigWordzSliceVariation
+>;
+
+/**
+ * Primary content in *IntroText → Default → Primary*
+ */
+export interface IntroTextSliceDefaultPrimary {
+  /**
+   * Introduction field in *IntroText → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: intro_text.default.primary.intro_text
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  intro_text: prismic.RichTextField;
+}
+
+/**
+ * Default variation for IntroText Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IntroTextSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<IntroTextSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *IntroText*
+ */
+type IntroTextSliceVariation = IntroTextSliceDefault;
+
+/**
+ * IntroText Shared Slice
+ *
+ * - **API ID**: `intro_text`
+ * - **Description**: IntroText
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type IntroTextSlice = prismic.SharedSlice<
+  "intro_text",
+  IntroTextSliceVariation
+>;
+
+/**
+ * Primary content in *ProjectsList → Default → Primary*
+ */
+export interface ProjectsListSliceDefaultPrimary {
+  /**
+   * Projects field in *ProjectsList → Default → Primary*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects_list.default.primary.projects
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  projects: prismic.ContentRelationshipField<"projects">;
+}
+
+/**
+ * Default variation for ProjectsList Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsListSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<ProjectsListSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *ProjectsList*
+ */
+type ProjectsListSliceVariation = ProjectsListSliceDefault;
+
+/**
+ * ProjectsList Shared Slice
+ *
+ * - **API ID**: `projects_list`
+ * - **Description**: ProjectsList
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type ProjectsListSlice = prismic.SharedSlice<
+  "projects_list",
+  ProjectsListSliceVariation
+>;
+
+/**
  * Primary content in *RichText → Default → Primary*
  */
 export interface RichTextSliceDefaultPrimary {
@@ -240,6 +364,17 @@ declare module "@prismicio/client" {
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
+      BigWordzSlice,
+      BigWordzSliceVariation,
+      BigWordzSliceDefault,
+      IntroTextSlice,
+      IntroTextSliceDefaultPrimary,
+      IntroTextSliceVariation,
+      IntroTextSliceDefault,
+      ProjectsListSlice,
+      ProjectsListSliceDefaultPrimary,
+      ProjectsListSliceVariation,
+      ProjectsListSliceDefault,
       RichTextSlice,
       RichTextSliceDefaultPrimary,
       RichTextSliceVariation,

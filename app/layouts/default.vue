@@ -16,8 +16,8 @@ useSeoMeta({
     <div>
         <Cursor />
         <AppHeader :settings="settings" />
-        {{ settings }}
         <slot />
         <AppFooter :settings="settings" />
+        <Overlay />
     </div>
 </template>

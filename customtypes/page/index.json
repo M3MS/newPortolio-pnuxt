@@ -27,6 +27,15 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "intro_text": {
+              "type": "SharedSlice"
+            },
+            "projects_list": {
+              "type": "SharedSlice"
+            },
+            "big_wordz": {
+              "type": "SharedSlice"
+            },
             "rich_text": {
               "type": "SharedSlice"
             }
