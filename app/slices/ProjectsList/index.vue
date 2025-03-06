@@ -16,7 +16,6 @@ const projectsList = computed(() => {
     .map(item => item.project)
     .filter(project => primsic.isFilled.contentRelationship(project)) as unknown as Content.ProjectDocument[];
 })
-
 </script>
 
 <template>

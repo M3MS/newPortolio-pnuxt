@@ -6,9 +6,20 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  devtools: { enabled: true },
+  devtools: { 
+    enabled: true,
+    componentInspector: false
+  },
 
   css: ['~/assets/scss/main.scss'],
+
+  
+  gsap: {
+    composables: true,
+    clubPlugins: {
+      splitText: true
+    }
+  },
 
   app: {
     head: {
