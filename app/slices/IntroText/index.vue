@@ -21,9 +21,7 @@ defineProps(
     <div class="hello__inner">
       <h3 class="hello__text text-split anim-text">
         <span>Hi there!</span>
-        <PrismicRichText 
-          :field="slice.primary.intro_text"
-        />
+        <PrismicText :field="slice.primary.intro_text" wrapper="p"/>
       </h3>
     </div>
   </section>

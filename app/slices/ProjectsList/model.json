@@ -12,15 +12,24 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
-        "projects": {
-          "type": "Link",
+        "projects_items": {
+          "type": "Group",
           "config": {
-            "label": "Projects",
-            "select": "document",
-            "repeat": false,
-            "customtypes": [
-              "projects"
-            ]
+            "label": "Projects Items",
+            "repeat": true,
+            "fields": {
+              "project": {
+                "type": "Link",
+                "config": {
+                  "label": "Project",
+                  "select": "document",
+                  "repeat": false,
+                  "customtypes": [
+                    "project"
+                  ]
+                }
+              }
+            }
           }
         }
       },

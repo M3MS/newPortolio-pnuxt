@@ -80,21 +80,112 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-interface ProjectsDocumentData {}
+type ProjectDocumentDataSlicesSlice = RichTextSlice;
 
 /**
- * Projects document from Prismic
+ * Content for Project documents
+ */
+interface ProjectDocumentData {
+  /**
+   * Hero field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.hero
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  hero: prismic.ImageField<never>;
+
+  /**
+   * Company field in *Project*
+   *
+   * - **Field Type**: Title
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.company
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  company: prismic.TitleField;
+
+  /**
+   * Description field in *Project*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.description
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  description: prismic.RichTextField;
+
+  /**
+   * Tech Stack field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.tech_stack
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  tech_stack: prismic.KeyTextField;
+
+  /**
+   * Slice Zone field in *Project*
+   *
+   * - **Field Type**: Slice Zone
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.slices[]
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/field#slices
+   */
+  slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice> /**
+   * Meta Title field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A title of the page used for social media and search engines
+   * - **API ID Path**: project.meta_title
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */;
+  meta_title: prismic.KeyTextField;
+
+  /**
+   * Meta Description field in *Project*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: A brief summary of the page
+   * - **API ID Path**: project.meta_description
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  meta_description: prismic.KeyTextField;
+
+  /**
+   * Meta Image field in *Project*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.meta_image
+   * - **Tab**: SEO & Metadata
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  meta_image: prismic.ImageField<never>;
+}
+
+/**
+ * Project document from Prismic
  *
- * - **API ID**: `projects`
+ * - **API ID**: `project`
  * - **Repeatable**: `true`
  * - **Documentation**: https://prismic.io/docs/custom-types
  *
  * @typeParam Lang - Language API ID of the document.
  */
-export type ProjectsDocument<Lang extends string = string> =
+export type ProjectDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<
-    Simplify<ProjectsDocumentData>,
-    "projects",
+    Simplify<ProjectDocumentData>,
+    "project",
     Lang
   >;
 
@@ -167,7 +258,7 @@ export type SettingsDocument<Lang extends string = string> =
 
 export type AllDocumentTypes =
   | PageDocument
-  | ProjectsDocument
+  | ProjectDocument
   | SettingsDocument;
 
 /**
@@ -246,18 +337,35 @@ export type IntroTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Item in *ProjectsList → Default → Primary → Projects Items*
+ */
+export interface ProjectsListSliceDefaultPrimaryProjectsItemsItem {
+  /**
+   * Project field in *ProjectsList → Default → Primary → Projects Items*
+   *
+   * - **Field Type**: Content Relationship
+   * - **Placeholder**: *None*
+   * - **API ID Path**: projects_list.default.primary.projects_items[].project
+   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   */
+  project: prismic.ContentRelationshipField<"project">;
+}
+
+/**
  * Primary content in *ProjectsList → Default → Primary*
  */
 export interface ProjectsListSliceDefaultPrimary {
   /**
-   * Projects field in *ProjectsList → Default → Primary*
+   * Projects Items field in *ProjectsList → Default → Primary*
    *
-   * - **Field Type**: Content Relationship
+   * - **Field Type**: Group
    * - **Placeholder**: *None*
-   * - **API ID Path**: projects_list.default.primary.projects
-   * - **Documentation**: https://prismic.io/docs/field#link-content-relationship
+   * - **API ID Path**: projects_list.default.primary.projects_items[]
+   * - **Documentation**: https://prismic.io/docs/field#group
    */
-  projects: prismic.ContentRelationshipField<"projects">;
+  projects_items: prismic.GroupField<
+    Simplify<ProjectsListSliceDefaultPrimaryProjectsItemsItem>
+  >;
 }
 
 /**
@@ -359,8 +467,9 @@ declare module "@prismicio/client" {
       PageDocument,
       PageDocumentData,
       PageDocumentDataSlicesSlice,
-      ProjectsDocument,
-      ProjectsDocumentData,
+      ProjectDocument,
+      ProjectDocumentData,
+      ProjectDocumentDataSlicesSlice,
       SettingsDocument,
       SettingsDocumentData,
       AllDocumentTypes,
@@ -372,6 +481,7 @@ declare module "@prismicio/client" {
       IntroTextSliceVariation,
       IntroTextSliceDefault,
       ProjectsListSlice,
+      ProjectsListSliceDefaultPrimaryProjectsItemsItem,
       ProjectsListSliceDefaultPrimary,
       ProjectsListSliceVariation,
       ProjectsListSliceDefault,

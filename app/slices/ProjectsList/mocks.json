@@ -3,13 +3,26 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"projects": {
-				"__TYPE__": "LinkContent",
-				"key": "87a134ff-a538-4756-b14e-a609fba1b1cc",
-				"value": {
-					"__TYPE__": "DocumentLink",
-					"id": "mock_document_id"
-				}
+			"projects_items": {
+				"__TYPE__": "GroupContentType",
+				"value": [
+					{
+						"__TYPE__": "GroupItemContent",
+						"value": [
+							[
+								"project",
+								{
+									"__TYPE__": "LinkContent",
+									"key": "ac5ffc8c-4d54-4ec1-a50a-a017f63f1983",
+									"value": {
+										"__TYPE__": "DocumentLink",
+										"id": "mock_document_id"
+									}
+								}
+							]
+						]
+					}
+				]
 			}
 		},
 		"items": []
