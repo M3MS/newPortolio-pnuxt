@@ -157,8 +157,7 @@
 
 		.marquee {
 	        padding-top: 10vh;
-		    padding-bottom: 50vh;
-		    //margin-top: -10vh;
+		    padding-bottom: 35vh;
 		    position: relative;
 		    overflow-x: hidden;
 		    
@@ -237,17 +236,12 @@
 			width: 100%;
 			height: 100%;
 			z-index: -1;
+			object-fit: cover;
+			object-position: center;
 
-			img {
-				width: 100%;
-				height: 100%;
-				object-fit: cover;
-				object-position: center;
-
-				@media (min-width: 768px) {
-					object-fit: none;
-					object-position: left -10vh;
-				}
+			@media (min-width: 768px) {
+				object-fit: none;
+				object-position: left -10vh;
 			}
 		}
 	}
