@@ -2,9 +2,9 @@ import * as THREE from 'three';
 import { RenderPass } from 'three/examples/jsm/postprocessing/RenderPass.js';
 import { EffectComposer } from 'three/examples/jsm/postprocessing/EffectComposer.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls.js';
-import { noise, fragmentShader, vertexShader, settings } from '../shaders/shaders.js';
-import vertexParticles from '../shaders/vertexParticles.js';
-import fragmentParticles from '../shaders/fragmentParticles.js';
+import { noise, fragmentShader, vertexShader, settings } from './shaders/shaders.js';
+import vertexParticles from './shaders/vertexParticles.js';
+import fragmentParticles from './shaders/fragmentParticles.js';
 import gsap from 'gsap';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
 

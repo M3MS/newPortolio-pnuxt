@@ -13,20 +13,7 @@ defineProps(getSliceComponentProps<Content.RichTextSlice>(
     <PrismicRichText
       :field="slice.primary.content"
       class="richtext"
-      wrapper="section"
+      wrapper="div"
     />
   </section>
 </template>
-
-<style scoped>
-section:deep(.richtext) {
-  max-width: 600px;
-  margin: 6em auto;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica,
-    Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-}
-
-section:deep(.richtext .codespan) {
-  font-family: monospace;
-}
-</style>

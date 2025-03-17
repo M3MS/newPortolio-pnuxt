@@ -23,7 +23,7 @@ export default defineNuxtConfig({
 
   app: {
     head: {
-      title: 'Prismic + Nuxt Minimal Starter',
+      title: 'Portfolio - Mehdy',
       htmlAttrs: {
         lang: 'en',
       },
@@ -37,7 +37,7 @@ export default defineNuxtConfig({
     }
   },
 
-  modules: ['@nuxt/eslint', '@nuxtjs/prismic'],
+  modules: ['@nuxt/eslint', '@nuxtjs/prismic', 'lenis/nuxt'],
 
   prismic: {
     endpoint: apiEndpoint || repositoryName,
@@ -52,6 +52,10 @@ export default defineNuxtConfig({
           type: 'page',
           uid: 'home',
           path: '/',
+        },
+        {
+          type: 'project',
+          path: '/projects/:uid',
         },
       ]
     }

@@ -15,7 +15,7 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-    data-scroll-section 
+
     class="hello"
   >
     <div class="hello__inner">

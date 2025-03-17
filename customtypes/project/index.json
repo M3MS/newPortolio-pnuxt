@@ -26,7 +26,7 @@
           "label": "Company",
           "placeholder": "",
           "allowTargetBlank": false,
-          "single": "heading1"
+          "single": "heading1,heading2,heading3,heading4,paragraph"
         }
       },
       "description": {
@@ -50,6 +50,9 @@
         "fieldset": "Slice Zone",
         "config": {
           "choices": {
+            "pif_paf": {
+              "type": "SharedSlice"
+            },
             "rich_text": {
               "type": "SharedSlice"
             }

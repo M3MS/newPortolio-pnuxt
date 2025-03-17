@@ -82,6 +82,9 @@ small {
     text-align: center;
 }
 
+.text-uppercase {
+    text-transform: uppercase;
+}
 
 .text-split > div, .intro-title > div {
     position: relative;
@@ -89,7 +92,9 @@ small {
 }
 
 .hollow-text {
-    color: #000;
-    -webkit-text-stroke-width: 1px;
-    -webkit-text-stroke-color: #fff;
+    -webkit-text-stroke: 2px #fff;
+    text-stroke: 2px #fff;
+    -webkit-text-fill-color: transparent;
+    text-fill-color: transparent;
+    color: transparent;
 }

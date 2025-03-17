@@ -82,7 +82,7 @@ interface PageDocumentData {
 export type PageDocument<Lang extends string = string> =
   prismic.PrismicDocumentWithUID<Simplify<PageDocumentData>, "page", Lang>;
 
-type ProjectDocumentDataSlicesSlice = RichTextSlice;
+type ProjectDocumentDataSlicesSlice = PifPafSlice | RichTextSlice;
 
 /**
  * Content for Project documents
@@ -102,13 +102,13 @@ interface ProjectDocumentData {
   /**
    * Company field in *Project*
    *
-   * - **Field Type**: Title
+   * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
    * - **API ID Path**: project.company
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/field#rich-text-title
    */
-  company: prismic.TitleField;
+  company: prismic.RichTextField;
 
   /**
    * Description field in *Project*
@@ -391,6 +391,58 @@ export type IntroTextSlice = prismic.SharedSlice<
 >;
 
 /**
+ * Primary content in *PifPaf → Default → Primary*
+ */
+export interface PifPafSliceDefaultPrimary {
+  /**
+   * Image field in *PifPaf → Default → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pif_paf.default.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text Content field in *PifPaf → Default → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pif_paf.default.primary.text_content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_content: prismic.RichTextField;
+}
+
+/**
+ * Default variation for PifPaf Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PifPafSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PifPafSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *PifPaf*
+ */
+type PifPafSliceVariation = PifPafSliceDefault;
+
+/**
+ * PifPaf Shared Slice
+ *
+ * - **API ID**: `pif_paf`
+ * - **Description**: PifPaf
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PifPafSlice = prismic.SharedSlice<"pif_paf", PifPafSliceVariation>;
+
+/**
  * Item in *ProjectsList → Default → Primary → Projects Items*
  */
 export interface ProjectsListSliceDefaultPrimaryProjectsItemsItem {
@@ -580,6 +632,10 @@ declare module "@prismicio/client" {
       IntroTextSliceDefaultPrimary,
       IntroTextSliceVariation,
       IntroTextSliceDefault,
+      PifPafSlice,
+      PifPafSliceDefaultPrimary,
+      PifPafSliceVariation,
+      PifPafSliceDefault,
       ProjectsListSlice,
       ProjectsListSliceDefaultPrimaryProjectsItemsItem,
       ProjectsListSliceDefaultPrimary,
