@@ -429,9 +429,47 @@ export type PifPafSliceDefault = prismic.SharedSliceVariation<
 >;
 
 /**
+ * Primary content in *PifPaf → Revert → Primary*
+ */
+export interface PifPafSliceRevertPrimary {
+  /**
+   * Image field in *PifPaf → Revert → Primary*
+   *
+   * - **Field Type**: Image
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pif_paf.revert.primary.image
+   * - **Documentation**: https://prismic.io/docs/field#image
+   */
+  image: prismic.ImageField<never>;
+
+  /**
+   * Text Content field in *PifPaf → Revert → Primary*
+   *
+   * - **Field Type**: Rich Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pif_paf.revert.primary.text_content
+   * - **Documentation**: https://prismic.io/docs/field#rich-text-title
+   */
+  text_content: prismic.RichTextField;
+}
+
+/**
+ * Revert variation for PifPaf Slice
+ *
+ * - **API ID**: `revert`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slice
+ */
+export type PifPafSliceRevert = prismic.SharedSliceVariation<
+  "revert",
+  Simplify<PifPafSliceRevertPrimary>,
+  never
+>;
+
+/**
  * Slice variation for *PifPaf*
  */
-type PifPafSliceVariation = PifPafSliceDefault;
+type PifPafSliceVariation = PifPafSliceDefault | PifPafSliceRevert;
 
 /**
  * PifPaf Shared Slice
@@ -634,8 +672,10 @@ declare module "@prismicio/client" {
       IntroTextSliceDefault,
       PifPafSlice,
       PifPafSliceDefaultPrimary,
+      PifPafSliceRevertPrimary,
       PifPafSliceVariation,
       PifPafSliceDefault,
+      PifPafSliceRevert,
       ProjectsListSlice,
       ProjectsListSliceDefaultPrimaryProjectsItemsItem,
       ProjectsListSliceDefaultPrimary,

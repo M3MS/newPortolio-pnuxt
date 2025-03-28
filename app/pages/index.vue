@@ -3,10 +3,9 @@ import { components } from '~/slices'
 import { VueLenis, useLenis } from 'lenis/vue'
 import { Scene } from '../scenes/BlobSceneClass'
 import gsap from 'gsap'
-import SplitText from 'gsap/SplitText';
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import textEffect from '~/utils/textEffect';
 
-gsap.registerPlugin(SplitText);
 gsap.registerPlugin(ScrollTrigger);
 
 const prismic = usePrismic()
@@ -37,7 +36,7 @@ const autoRaf = ref(true)
 
 const lenis = useLenis(
   (lenis) => {
-    console.log('root scroll', lenis.options.lerp, lenis.scroll)
+    //console.log('root scroll', lenis.options.lerp, lenis.scroll)
   },
   0,
   'root'
@@ -55,8 +54,17 @@ watch(
 
 onMounted(() => {
 
-  let textSplit = new SplitText('.text-split', {type: "lines, words"});
-  let wavyText = textSplit.words;
+  lenisRef.value = lenis
+  ScrollTrigger.scrollerProxy(lenisRef.value.$el, {
+    scrollTop(value) {
+      return arguments.length ? lenisRef.value.$el.scrollTop = value : lenisRef.value.$el.scrollTop
+    },
+    getBoundingClientRect() {
+      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
+    }
+  })
+  ScrollTrigger.defaults({ scroller: lenisRef.value.$el })
+  ScrollTrigger.refresh()
 
   if (!blob.value) return;
             
@@ -85,7 +93,6 @@ onMounted(() => {
       z: 4.5
   }, '-= 1');
 
-
   let g2Tl = gsap.timeline({
       clearProps: true,
       scrollTrigger: {
@@ -105,19 +112,7 @@ onMounted(() => {
       z: -2
   }, '-= 1');
 
-  wavyText.forEach(word => {
-
-    gsap.from(word, {
-      opacity: 0,
-      y: 150,
-      stagger: 0.5,
-      ease: "power3inOut",
-      scrollTrigger: {
-        trigger: word,
-        start: "top 70%"
-      }
-    })
-  });
+  textEffect();
 
 });
 </script>

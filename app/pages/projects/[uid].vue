@@ -3,6 +3,11 @@ import { components } from "~/slices";
 import { VueLenis, useLenis } from 'lenis/vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import textEffect  from '~/utils/textEffect';
+
+defineOptions({
+  inheritAttrs: false,
+});
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -24,13 +29,9 @@ useSeoMeta({
 const lerp = ref(0.1)
 const autoRaf = ref(true)
 
-const lenis = useLenis(
-  (lenis) => {
+const lenis = useLenis((lenis) => {
     lenis.on('scroll', ScrollTrigger.update)
-  },
-  0,
-  'root'
-)
+})
 
 const lenisRef = ref()
 
@@ -42,48 +43,60 @@ watch(
   { immediate: true }
 )
 
+
 onMounted(() => {
-  /*--------------------
-  Parallax data-scroll
-  --------------------*/
-  document.querySelectorAll('[data-scroll]').forEach((el) => {
 
-    const speed = el.dataset.scrollSpeed * 100
-    const zoom = el.dataset.scrollZoom || 1
+  lenisRef.value = lenis
 
-    gsap.set(el, {
-      scale: zoom
-    })
-
-    gsap.to(el, {
-      scrollTrigger: {
-        trigger: el,
-        scrub: true,
-        start: 'top 90%',
-        end: 'bottom 0%',
-        once: false
-      },
-      y: `${-speed}%`,
-      ease: 'none'
-    })
+  ScrollTrigger.scrollerProxy(lenisRef.value.$el, {
+    scrollTop(value) {
+      return arguments.length ? lenisRef.value.$el.scrollTop = value : lenisRef.value.$el.scrollTop
+    },
+    getBoundingClientRect() {
+      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
+    }
   })
+
+  ScrollTrigger.defaults({ scroller: lenisRef.value.$el })
+  ScrollTrigger.refresh()
+
+  textEffect()
+
+  const elements = document.querySelectorAll('[data-scroll-trigger]')
+
+  elements.forEach((element) => 
+
+    gsap.to('[data-speed]', {
+      y: (i, element) => (1 - Number.parseFloat(element.getAttribute('data-speed'))) * ScrollTrigger.maxScroll(window),
+      ease: 'none',
+      scrollTrigger: {
+        start: 0,
+        end: 'max',
+        invalidateOnRefresh: true,
+        scrub: 0,
+      },
+    })
+  )
 })
 </script>
 
 <template>
   <div id="project">
-    <vue-lenis class="scroller" ref="lenisRef" root :options="{ lerp, autoRaf }"> 
+    <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }"> 
       <div class="hero">
         <div class="hero__inner">
-          <PrismicImage v-if="$prismic.isFilled.image(page?.data.hero)" :field="page?.data.hero" class="hero__img" />
           <div class="hero__title">
             <PrismicText :field="page?.data.company" wrapper="h1" class="is-bold title-md text-uppercase hollow-text" />
             <span class="lead">{{page?.data.tech_stack }}</span>
           </div>
+          <div class="hero__image">
+            <div class="aspect"></div>
+            <PrismicImage v-if="$prismic.isFilled.image(page?.data.hero)" :field="page?.data.hero" />
+          </div>
         </div>
       </div>
       <div class="intro">
-        <PrismicText :field="page?.data.description" wrapper="p" />
+        <PrismicText :field="page?.data.description" wrapper="p" class="text-split" />
       </div>
       <SliceZone
         wrapper="div"
