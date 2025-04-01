@@ -93,6 +93,30 @@ export default {
         </svg>
     </div>
 </template>
-<style>
+<style scoped lang="scss">
+.cursor {
+	display: none;
+}
 
+@media (any-pointer:fine) {
+	.cursor {
+		position: fixed;
+		top: 0;
+		left: 0;
+		display: block;
+		pointer-events: none;
+		z-index: 10000;
+		mix-blend-mode: exclusion;
+	}
+
+	.cursor__inner {
+		fill: var(--cursor-fill);
+		border: 1px solid var(--cursor-fill);
+	}
+
+	.no-js .cursor {
+		display: none;
+	}
+
+}
 </style>

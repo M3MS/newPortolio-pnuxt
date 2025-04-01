@@ -22,3 +22,33 @@ defineProps<{
     </div>
   </footer>
 </template>
+
+<style scoped lang="scss">
+.site-footer {
+  mix-blend-mode: soft-light;
+  background-color: $black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+
+  a.contact {
+      display: block;
+      position: relative;
+      white-space: nowrap;
+  }
+
+  .socials {
+      color: $white;
+      display: flex;
+      width: 100%;
+      justify-content: center;
+      margin-top: 2vh;
+      list-style: none;
+
+      a {
+          padding: 0 2vw;
+      }
+  }
+}
+</style>

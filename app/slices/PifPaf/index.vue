@@ -39,26 +39,37 @@ defineProps(
 .pifpaf {
   position: relative;
   width: 100%;
-  height: 90vh;
+  max-width: 90vw;
+  height: 70vh;
+  margin: 0 auto;
   display: flex;
-  flex-wrap: wrap;
-  align-items: center;
-  justify-content: space-around;
+  flex-direction: column;
+  justify-content: center;
+  mix-blend-mode: exclusion;
 
-  &--revert {
-      flex-direction: row-reverse;
+  @media (min-width: 800px) {
+    flex-direction: row;
+    height: 90vh;
+    align-items: center;
+    justify-content: space-around;
   }
 
   .text-content {
-      width: 25vw;
-      font-size: 1.2vw;
+      width: 55vw;
+      font-size: 1.8rem;
       will-change: transform;
+      margin: 5vh;
+
+      @media (min-width: 800px) {
+        width: 25vw;
+        font-size: 1.3vw;
+      }
   }
 
   .media {
-      width: 50vw;
-      height: 100%;
+      width: 70vw;
       position: relative;
+      margin-left: auto;
       will-change: transform;
 
       img {
@@ -66,6 +77,19 @@ defineProps(
           height: auto;
           object-fit: cover;
           object-position: center;
+      }
+  }
+
+  &--revert {
+      
+
+      @media (min-width: 800px) {
+        flex-direction: row-reverse;
+
+        .media {
+          margin-left: 0;
+          margin-right: auto;
+        }
       }
   }
 }

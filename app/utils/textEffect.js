@@ -18,8 +18,10 @@ export default function textEffect() {
             stagger: 0.5,
             ease: "power3inOut",
             scrollTrigger: {
-            trigger: word,
-            start: "top 70%"
+                trigger: word,
+                start: "top 90%",
+                end: "bottom 85%",
+                toggleActions: "play none none reverse",
             }
         })
     });
