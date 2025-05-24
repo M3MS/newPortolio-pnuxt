@@ -26,7 +26,8 @@ export default defineNuxtConfig({
   gsap: {
     composables: true,
     clubPlugins: {
-      splitText: true
+      splitText: true,
+      scrollTrigger: true
     }
   },
 

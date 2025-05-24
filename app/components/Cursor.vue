@@ -1,5 +1,4 @@
 <script>
-import { onMounted } from 'vue';
 import gsap from 'gsap';
 
 // Linear interpolation
@@ -70,7 +69,6 @@ export default {
             
             window.addEventListener('mousemove', ev => mouse = getMousePos(ev));
 
-
             [...document.querySelectorAll('a')].forEach(link => {
                 link.addEventListener('mouseenter', () => cursor.enter());
                 link.addEventListener('mouseleave', () => cursor.leave());
@@ -78,8 +76,7 @@ export default {
         }
     },
 
-    mounted() {
-        
+    onMounted() {
         this.init();
     }
     

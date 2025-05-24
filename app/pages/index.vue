@@ -32,6 +32,7 @@ const props = defineProps(['class'])
 const blob = ref(null)
 
 const lerp = ref(0.1)
+
 const autoRaf = ref(true)
 
 const lenis = useLenis(
@@ -41,13 +42,12 @@ const lenis = useLenis(
   0,
   'root'
 )
-
 const lenisRef = ref()
 
 watch(
   lenis,
   (lenis) => {
-    console.log('page', lenis)
+    
   },
   { immediate: true }
 )
@@ -94,12 +94,12 @@ onMounted(() => {
   }, '-= 1');
 
   let g2Tl = gsap.timeline({
-      clearProps: true,
-      scrollTrigger: {
-          trigger: '.techno',
-          start: "top 80%",
-          scrub: 2
-      }
+    clearProps: true,
+    scrollTrigger: {
+        trigger: '.techno',
+        start: "top 80%",
+        scrub: 2
+    }
   });
   
   g2Tl.to(animMesh.material.uniforms.uNoiseDensity, {
