@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { components } from '~/slices';
+import { components } from '~/slices'
 
 const prismic = usePrismic();
 const route = useRoute();
@@ -15,7 +15,6 @@ useSeoMeta({
   ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image)),
 });
 </script>
-
 
 <template>
   <SliceZone

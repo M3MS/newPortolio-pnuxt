@@ -1,5 +1,12 @@
 <script lang="ts" setup>
+import { useOverlayRef } from '~/composables/useOverlayRef'
+import Overlay from '~/components/Overlay.vue'
+import transitionSetup from '~/utils/transitionSetup'
+import Cursor from '~/components/Cursor.vue'
+
 const prismic = usePrismic()
+
+const { setOverlayRef } = useOverlayRef()
 
 const { data: settings } = await useAsyncData( () => prismic.client.getSingle('settings'))
 
@@ -16,8 +23,12 @@ useSeoMeta({
     <div>
         <Cursor />
         <AppHeader :settings="settings" />
-        <slot />
+        <Transition v-bind="transitionSetup" mode="out-in">
+            <div>
+                <slot />
+            </div>
+        </Transition>
         <AppFooter :settings="settings" />
-        <Overlay />
+        <Overlay :ref="setOverlayRef" />
     </div>
 </template>

@@ -1,17 +1,16 @@
 <script setup lang="ts">
 import { components } from '~/slices'
+import { ref, watchEffect } from 'vue'
 import { VueLenis, useLenis } from 'lenis/vue'
 import { Scene } from '../scenes/BlobSceneClass'
 import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import textEffect from '~/utils/textEffect';
-
-gsap.registerPlugin(ScrollTrigger);
+import { ScrollTrigger } from 'gsap/ScrollTrigger'
+import textEffect from '~/utils/textEffect'
 
 const prismic = usePrismic()
 
 const { data: page } = await useAsyncData('index', () =>
-  prismic.client.getByUID('page', 'home', {
+  prismic.client.getByUID('page', 'home', { 
     fetchLinks: [
       'project.company',
       'project.tech_stack',
@@ -29,41 +28,33 @@ useSeoMeta({
 
 const props = defineProps(['class'])
 
-const blob = ref(null)
+const blob = ref(null)   
 
 const lerp = ref(0.1)
 
 const autoRaf = ref(true)
 
-const lenis = useLenis(
-  (lenis) => {
-    //console.log('root scroll', lenis.options.lerp, lenis.scroll)
-  },
-  0,
-  'root'
-)
 const lenisRef = ref()
 
-watch(
-  lenis,
-  (lenis) => {
-    
-  },
-  { immediate: true }
-)
+watchEffect((onInvalidate) => {
+  if (!lenisRef.value?.lenis) return
+
+  lenisRef.value.lenis.on('scroll', ScrollTrigger.update)
+
+  function update(time) {
+    lenisRef.value?.lenis?.raf(time * 1000)
+  }
+  gsap.ticker.add(update)
+
+  onInvalidate(() => {
+    gsap.ticker.remove(update)
+  })
+})
 
 onMounted(() => {
 
-  lenisRef.value = lenis
-  ScrollTrigger.scrollerProxy(lenisRef.value.$el, {
-    scrollTop(value) {
-      return arguments.length ? lenisRef.value.$el.scrollTop = value : lenisRef.value.$el.scrollTop
-    },
-    getBoundingClientRect() {
-      return { top: 0, left: 0, width: window.innerWidth, height: window.innerHeight }
-    }
-  })
-  ScrollTrigger.defaults({ scroller: lenisRef.value.$el })
+  gsap.registerPlugin(ScrollTrigger)
+
   ScrollTrigger.refresh()
 
   if (!blob.value) return;
@@ -115,16 +106,22 @@ onMounted(() => {
   textEffect();
 
 });
+
+onUnmounted(() => {
+
+})
 </script>
 
 <template>
-  <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
-    <div id="gl-stuff" ref="blob"></div>
-    <SliceZone
-      wrapper="main"
-      :slices="page?.data.slices ?? []"
-      :components="components"
-      id="home"
-    />
-  </vue-lenis>
+  <div>
+    <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
+      <div id="gl-stuff" ref="blob"></div>
+      <SliceZone
+        wrapper="main"
+        :slices="page?.data.slices ?? []"
+        :components="components"
+        id="home"
+      />
+    </vue-lenis>
+  </div>
 </template>

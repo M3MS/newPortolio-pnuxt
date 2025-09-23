@@ -1,9 +1,10 @@
 <script setup lang="ts">
+import { computed } from "vue";
 import type { Content } from "@prismicio/client";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
-defineProps(
+const props = defineProps(
   getSliceComponentProps<Content.PifPafSlice>([
     "slice",
     "index",
@@ -11,6 +12,18 @@ defineProps(
     "context",
   ]),
 );
+
+const seededRandom = (seed: number): number => {
+  const x = Math.sin(seed * 12.9898) * 43758.5453;
+  return x - Math.floor(x);
+};
+
+const speed = computed<number>(() => {
+  const r = seededRandom(props.index + 1);
+  const value = 0.7 + r * 0.3; // range [0.7, 1.0)
+  return Number(value.toFixed(2));
+});
+
 </script>
 
 <template>
@@ -22,15 +35,30 @@ defineProps(
       'pifpaf--revert': slice.variation === 'revert'
     }"
   >
-  <div class="text-content" data-scroll-trigger data-speed="0.9">
-    <PrismicRichText :field="slice.primary.text_content" wrapper="p" class="text-split" />
+  <div class="text-content">
+    <ClientOnly>
+      <PrismicRichText :field="slice.primary.text_content" wrapper="p" class="text-split" />
+      <template #fallback>
+        <PrismicText :field="slice.primary.text_content" wrapper="p" />
+      </template>
+    </ClientOnly>
   </div>
-  <div class="media" data-scroll-trigger data-speed="0.8">
+  <div class="media" data-scroll-trigger :data-speed="speed">
     <PrismicImage
       v-if="$prismic.isFilled.image(slice.primary.image)"
       :field="slice.primary.image"
-      :imgix-params="{ auto: null }"
+      :imgix-params="{ 
+        auto: null,
+        fm: 'webp',
+        q: 100
+      }"
       />
+      <video v-if="$prismic.isFilled.keyText(slice.primary.video_link)" loop muted autoplay playsinline >
+        <source
+          :src="slice.primary.video_link"
+          type="video/mp4"
+        >
+      </video>
   </div>
   </section>
 </template>
@@ -40,7 +68,6 @@ defineProps(
   position: relative;
   width: 100%;
   max-width: 90vw;
-  height: 70vh;
   margin: 0 auto;
   display: flex;
   flex-direction: column;
@@ -49,9 +76,9 @@ defineProps(
 
   @media (min-width: 800px) {
     flex-direction: row;
-    height: 90vh;
+    padding: 10vw 0;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-around; 
   }
 
   .text-content {
@@ -67,31 +94,40 @@ defineProps(
   }
 
   .media {
-      width: 70vw;
-      position: relative;
-      margin-left: auto;
-      will-change: transform;
+    width: 70vw;
+    position: relative;
+    margin-left: auto;
+    will-change: transform;
 
-      img {
-          width: 100%;
-          height: auto;
-          object-fit: cover;
-          object-position: center;
-      }
+    img {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
+
+    video {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      object-position: center;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+    }
   }
 
   &--revert {
-      
+    
+    @media (min-width: 800px) {
+      flex-direction: row-reverse;
 
-      @media (min-width: 800px) {
-        flex-direction: row-reverse;
-
-        .media {
-          margin-left: 0;
-          margin-right: auto;
-        }
+      .media {
+        margin-left: 0;
+        margin-right: auto;
       }
+    }
   }
 }
-
 </style>

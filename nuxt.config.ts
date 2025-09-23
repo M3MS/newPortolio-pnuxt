@@ -6,9 +6,13 @@ export default defineNuxtConfig({
     compatibilityVersion: 4
   },
 
-  devtools: { 
+  devtools: {
     enabled: true,
-    componentInspector: false
+    componentInspector: false,
+
+    timeline: {
+      enabled: true,
+    },
   },
 
   css: ['~/assets/scss/main.scss'],
@@ -44,6 +48,10 @@ export default defineNuxtConfig({
         { name: 'format-detection', content: 'telephone=no' },
       ],
       link: [{ rel: 'icon', type: 'image/x-icon', href: '/favicon.ico' }],
+    },
+    pageTransition: {
+      name: 'page-transiton',
+      mode: 'out-in'
     }
   },
 

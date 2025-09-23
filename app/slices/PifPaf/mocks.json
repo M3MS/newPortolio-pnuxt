@@ -36,6 +36,11 @@
 						}
 					}
 				]
+			},
+			"video_link": {
+				"__TYPE__": "FieldContent",
+				"value": "most",
+				"type": "Text"
 			}
 		},
 		"items": []

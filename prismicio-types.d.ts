@@ -405,6 +405,16 @@ export interface PifPafSliceDefaultPrimary {
   image: prismic.ImageField<never>;
 
   /**
+   * Video Link field in *PifPaf → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: pif_paf.default.primary.video_link
+   * - **Documentation**: https://prismic.io/docs/field#key-text
+   */
+  video_link: prismic.KeyTextField;
+
+  /**
    * Text Content field in *PifPaf → Default → Primary*
    *
    * - **Field Type**: Rich Text

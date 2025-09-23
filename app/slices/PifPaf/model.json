@@ -20,6 +20,13 @@
             "thumbnails": []
           }
         },
+        "video_link": {
+          "type": "Text",
+          "config": {
+            "label": "Video Link",
+            "placeholder": ""
+          }
+        },
         "text_content": {
           "type": "StructuredText",
           "config": {

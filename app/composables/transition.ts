@@ -5,7 +5,7 @@ const transitionState = reactive({
 });
 
 export const useTransition = () => {
-  const toggleTransitionComplete = (value) => {
+  const toggleTransitionComplete = (value: boolean) => {
     transitionState.transitionComplete = value;
   };
 
