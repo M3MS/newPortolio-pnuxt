@@ -6,7 +6,8 @@ const duration = 0.6
 
 const transitionSetup = {
   name: 'page-transiton',
-
+  mode: 'out-in',
+  
   onBeforeEnter: (el: Element) => {
     gsap.set(el, { opacity: 0 })
   },
@@ -35,25 +36,12 @@ const transitionSetup = {
     gsap.timeline({
       onComplete() {
         toggleTransitionComplete(true);
-        done();
         console.log('Transition complete');
+        done();
       },
     })
     .to(el, {
       opacity: 1,
-    }, '-=0.4')
-    .set(overlayPath, { 
-        attr: { d: 'M 0 0 V 100 Q 50 100 100 100 V 0 z' }
-    })
-    .to(overlayPath, { 
-        duration: 0.3,
-        ease: 'power2.in',
-        attr: { d: 'M 0 0 V 50 Q 50 0 100 50 V 0 z' }
-    })
-    .to(overlayPath, { 
-        duration: 0.8,
-        ease: 'power4',
-        attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
     })
     .set(overlay, { autoAlpha: 0 })
   },
@@ -74,29 +62,43 @@ const transitionSetup = {
 
     gsap.timeline({ 
       onComplete(){
-        done();
         console.log('YOOO');
+        done();
       }
     })
     .set(overlay, { autoAlpha: 1 })
-    .set(overlayPath, {
-      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
-    })
-    .to(overlayPath, { 
-      duration: 0.8,
-      ease: 'power4.in',
-      attr: { d: 'M 0 100 V 50 Q 50 0 100 50 V 100 z' }
-    }, 0)
-    .to(overlayPath, { 
-      duration: 0.3,
-      ease: 'power2',
-      attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' },
-    })
     .to(el, { 
       duration: 0.3,
       opacity: 0,
       ease: 'power2.in'
     }, '-=0.6')
+    .set(overlayPath, {
+      attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
+    })
+    .to(overlayPath, { 
+        duration: 0.8,
+        ease: 'power4.in',
+        attr: { d: 'M 0 0 V 50 Q 50 100 100 50 V 0 z' }
+    }, 0)
+    .to(overlayPath, { 
+        duration: 0.3,
+        ease: 'power2',
+        attr: { d: 'M 0 0 V 100 Q 50 100 100 100 V 0 z' },
+    })
+    // now reveal
+    .set(overlayPath, { 
+        attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
+    })
+    .to(overlayPath, { 
+        duration: 0.3,
+        ease: 'power2.in',
+        attr: { d: 'M 0 100 V 50 Q 50 100 100 50 V 100 z' }
+    })
+    .to(overlayPath, { 
+        duration: 0.8,
+        ease: 'power4',
+        attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
+    })
   },
 };
 

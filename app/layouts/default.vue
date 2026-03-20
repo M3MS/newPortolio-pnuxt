@@ -23,10 +23,8 @@ useSeoMeta({
     <div>
         <Cursor />
         <AppHeader :settings="settings" />
-        <Transition v-bind="transitionSetup" mode="out-in">
-            <div>
-                <slot />
-            </div>
+        <Transition v-bind="transitionSetup">
+            <slot />
         </Transition>
         <AppFooter :settings="settings" />
         <Overlay :ref="setOverlayRef" />

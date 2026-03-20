@@ -217,12 +217,12 @@
 
 		&__text {
 			font-size: 5vw;
-			padding: 0 3vw;
+			padding: 0 1vw;
 			margin-bottom: 8vw;
 
 			@media (min-width: 768px) {
-				max-width: 22vw;
-				margin-left: 75vw;
+				max-width: 25vw;
+				margin-left: 68vw;
 				font-size: 1.2vw;
 			}
 		}
@@ -237,11 +237,6 @@
 			z-index: -1;
 			object-fit: cover;
 			object-position: center;
-
-			@media (min-width: 768px) {
-				object-fit: none;
-				object-position: left -10vh;
-			}
 		}
 	}
 }
