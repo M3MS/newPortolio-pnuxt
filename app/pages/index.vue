@@ -60,12 +60,12 @@ onMounted(() => {
   if (!blob.value) return;
             
   const sceneInstance = new Scene({
-      domElement: blob.value // Pass native DOM element
+      domElement: blob.value
   });
 
   const animMesh = sceneInstance.mesh;
 
-  let g1Tl = gsap.timeline({
+  const g1Tl = gsap.timeline({
       clearProps: true,
       scrollTrigger: {
           trigger: '.hello',
@@ -84,7 +84,7 @@ onMounted(() => {
       z: 4.5
   }, '-= 1');
 
-  let g2Tl = gsap.timeline({
+  const g2Tl = gsap.timeline({
     clearProps: true,
     scrollTrigger: {
         trigger: '.techno',
@@ -115,12 +115,12 @@ onUnmounted(() => {
 <template>
   <div>
     <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
-      <div id="gl-stuff" ref="blob"></div>
+      <div id="gl-stuff" ref="blob"/>
       <SliceZone
-        wrapper="main"
-        :slices="page?.data.slices ?? []"
-        :components="components"
-        id="home"
+          id="home"
+          wrapper="main"
+          :slices="page?.data.slices ?? []"
+          :components="components"
       />
     </vue-lenis>
   </div>

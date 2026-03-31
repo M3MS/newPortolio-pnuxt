@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { useOverlayRef } from '~/composables/useOverlayRef'
 import Overlay from '~/components/Overlay.vue'
-import transitionSetup from '~/utils/transitionSetup'
+
 import Cursor from '~/components/Cursor.vue'
 
 const prismic = usePrismic()
@@ -23,9 +23,7 @@ useSeoMeta({
     <div>
         <Cursor />
         <AppHeader :settings="settings" />
-        <Transition v-bind="transitionSetup">
-            <slot />
-        </Transition>
+        <slot />
         <AppFooter :settings="settings" />
         <Overlay :ref="setOverlayRef" />
     </div>

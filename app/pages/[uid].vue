@@ -14,12 +14,15 @@ useSeoMeta({
   ogDescription: page.value?.data.meta_description,
   ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image)),
 });
+
 </script>
 
 <template>
-  <SliceZone
-    wrapper="main"
-    :slices="page?.data.slices ?? []"
-    :components="components"
-  />
+  <div>
+    <SliceZone
+      wrapper="main"
+      :slices="page?.data.slices ?? []"
+      :components="components"
+    />
+  </div>
 </template>
