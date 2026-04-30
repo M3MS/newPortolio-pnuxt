@@ -3,10 +3,6 @@ import type { Content } from "@prismicio/client";
 import gsap from 'gsap';
 import SplitText from 'gsap/SplitText';
 
-gsap.registerPlugin(SplitText);
-
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
 defineProps(
   getSliceComponentProps<Content.BigWordzSlice>([
     "slice",
@@ -16,28 +12,36 @@ defineProps(
   ]),
 );
 
+let split: SplitText | null = null
+let ctx: any = null
+
 onMounted(() => {
-  let introSplit = new SplitText('.intro-title', {type: "lines, words"});
-  let introText = introSplit.words;
-  let introTl = gsap.timeline({paused: true, delay: 2.5});
-  let ctx;
+  ctx = gsap.context(() => {
+    split = new SplitText('.intro-title', { type: "lines, words" })
 
-  introText.forEach(word => {
+    const introTl = gsap.timeline({ delay: 2. })
 
-    introTl.from(word, {
-      opacity: 0,
-      y: 150,
-      duration: 0.5,
-      delay: 0.2,
-      stagger: 0.05,
-      ease: "power3"
+    gsap.to('.intro-title', {
+      opacity: 1,
     })
 
-  });
+    split.words.forEach((word) => {
+      introTl.from(word, {
+        opacity: 0,
+        y: 200,
+        duration: 0.5,
+        delay: 0.1,
+        stagger: 0.05,
+        ease: 'power3.out',
+      })
+    })
+  })
+})
 
-  introTl.play();
-
-});
+onUnmounted(() => {
+  split?.revert()
+  ctx?.revert()
+})
 </script>
 
 <template>

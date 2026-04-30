@@ -34,7 +34,7 @@ class Cursor {
         this.onMouseMoveEv = () => {
             this.renderedStyles.tx.previous = this.renderedStyles.tx.current = mouse.x - this.bounds.width/2;
             this.renderedStyles.ty.previous = this.renderedStyles.ty.current = mouse.y - this.bounds.height/2;
-            gsap.to(this.DOM.el, {duration: 0.9, ease: 'Power3.easeOut', opacity: 1});
+            gsap.to(this.DOM.el, {duration: 0.9, ease: 'power3.out', opacity: 1});
             this.startAnimation(); // Start controlled animation
             window.removeEventListener('mousemove', this.onMouseMoveEv);
         };

@@ -27,14 +27,6 @@ export default defineNuxtConfig({
     }
   },
 
-  gsap: {
-    composables: true,
-    clubPlugins: {
-      splitText: true,
-      scrollTrigger: true
-    }
-  },
-
   app: {
     head: {
       title: 'Portfolio - Mehdy',

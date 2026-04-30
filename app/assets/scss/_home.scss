@@ -31,19 +31,16 @@
 				line-height: 0.9;
 				overflow: hidden;
 				margin: 0;
-
-				@media (min-width: 768px) {
-					font-size: 18vw;
-				}
+				opacity: 0;
 
 				span.small {
 					font-size: 8vw;
 				}
 
-
-				> div {
-					//display: inline-block !important;
+				@media (min-width: 768px) {
+					font-size: 18vw;
 				}
+
 			}
 		}
 	}
@@ -218,7 +215,8 @@
 		&__text {
 			font-size: 5vw;
 			padding: 0 1vw;
-			margin-bottom: 8vw;
+			margin-bottom: 15vw;
+			color: #010101;
 
 			@media (min-width: 768px) {
 				max-width: 25vw;

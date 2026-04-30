@@ -1,28 +1,30 @@
 import gsap from 'gsap'
-import SplitText from 'gsap/SplitText';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import SplitText from 'gsap/SplitText'
 
-gsap.registerPlugin(SplitText);
-gsap.registerPlugin(ScrollTrigger);
+export default function textEffect(scope) {
+    const splits = []
 
-export default function textEffect() {
-    
-    let textSplit = new SplitText('.text-split', {type: "lines, words"});
-    let wavyText = textSplit.words;
+    const ctx = gsap.context(() => {
+        gsap.utils.toArray('.text-split').forEach((el) => {
+            const split = new SplitText(el, { type: 'lines, words' })
+            splits.push(split)
 
-    wavyText.forEach(word => {
-
-        gsap.from(word, {
-            opacity: 0,
-            y: 150,
-            stagger: 0.5,
-            ease: "power3inOut",
-            scrollTrigger: {
-                trigger: word,
-                start: "top 90%",
-                end: "bottom 85%",
-                toggleActions: "play none none reverse",
-            }
+            gsap.from(split.words, {
+                opacity: 0,
+                y: 150,
+                stagger: 0.05,
+                ease: 'power3.inOut',
+                scrollTrigger: {
+                    trigger: el,
+                    start: 'top 90%',
+                    toggleActions: 'play none none reverse',
+                },
+            })
         })
-    });
+    }, scope)
+
+    return () => {
+        splits.forEach((s) => s.revert())
+        ctx.revert()
+    }
 }

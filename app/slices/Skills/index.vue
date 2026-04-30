@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import gsap from "gsap";
-import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import type { Content } from "@prismicio/client";
 
 defineProps(
@@ -12,54 +11,55 @@ defineProps(
   ]),
 );
 
+let mm: ReturnType<typeof gsap.matchMedia> | null = null
+let ctx: any = null
+
 onMounted(() => {
+  mm = gsap.matchMedia()
 
-  gsap.registerPlugin(ScrollTrigger);
+  mm.add("(max-width: 768px)", () => {
+    const mobileTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".marquee",
+        start: "-100% bottom",
+        scrub: 1,
+      },
+    })
 
-  ScrollTrigger.saveStyles(".first, .second");
+    mobileTL.to(".first", { duration: 2, xPercent: -100 })
+            .to(".second", { duration: 2, xPercent: 100 }, "<")
+  })
 
-  ScrollTrigger.matchMedia({
+  mm.add("(min-width: 769px)", () => {
+    const desktopTL = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".marquee",
+        start: "10% bottom",
+        scrub: 5,
+      },
+    })
 
-    "(max-width: 768px)": function() {
-      
-      let mobileTL = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".marquee",
-          start: "-100% bottom",
-          scrub: 1
-        }
-      });
+    desktopTL.to(".first", { duration: 2, xPercent: -100 })
+             .to(".second", { duration: 2, xPercent: 100 }, "<")
+  })
 
-      mobileTL.to(".first", {duration: 2, xPercent: -100})
-              .to(".second", {duration: 2, xPercent: 100}, "<");
-    },
-    
-    "(min-width: 769px)": function() {
+  ctx = gsap.context(() => {
+    gsap.to('.techno', {
+      backgroundColor: 'rgb(249 255 107)',
+      ease: "sine.in",
+      duration: 1,
+      scrollTrigger: {
+        start: "top 70%",
+        trigger: ".techno",
+      },
+    })
+  })
+})
 
-      let desktopTL = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".marquee",
-          start: "10% bottom",
-          scrub: 5
-        }
-      });
-
-      desktopTL.to(".first", {duration: 2, xPercent: -100})
-               .to(".second", {duration: 2, xPercent: 100}, "<");
-    }
-  });
-
-  gsap.to('.techno', {
-    backgroundColor: 'rgb(249 255 107)',
-    ease: "sine.in",
-    duration: 1,
-    scrollTrigger: {
-      start: "top 70%",
-      trigger: ".techno"
-    }
-  });
-
-});
+onUnmounted(() => {
+  mm?.revert()
+  ctx?.revert()
+})
 </script>
 
 <template>
@@ -69,7 +69,7 @@ onMounted(() => {
 
     class="techno"
   >
-    <PrismicText 
+    <PrismicText
     :field="slice.primary.heading"
     wrapper="h3"
     class="lead text-center is-bold text-split"

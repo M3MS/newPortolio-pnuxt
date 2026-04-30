@@ -2,7 +2,6 @@
 import type { Content } from "@prismicio/client"
 import gsap from 'gsap'
 import SplitText from 'gsap/SplitText'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
 
 const primsic = usePrismic();
 const props = defineProps(
@@ -20,37 +19,44 @@ const projectsList = computed(() => {
     .filter(project => primsic.isFilled.contentRelationship(project)) as unknown as Content.ProjectDocument[];
 })
 
+const splits: SplitText[] = []
+let ctx: any = null
+
 onMounted(() => {
-  let workItem = gsap.utils.toArray(".work-items__item");
+  ctx = gsap.context(() => {
+    const workItems = gsap.utils.toArray<HTMLElement>(".work-items__item")
 
-  workItem.forEach(item => {
+    workItems.forEach((item) => {
+      const line = item.querySelector('.line')
+      const links = Array.from(item.querySelectorAll('a'))
+      const workSplit = new SplitText(links, { type: "lines, words" })
+      splits.push(workSplit)
 
-    let line = item.querySelectorAll('.line');
-    let client = item.querySelectorAll('a');
-    let workSplit = new SplitText(client, {type: "lines, words"});
-    let workText = workSplit.lines;
+      const workTl = gsap.timeline({
+        defaults: { ease: "power3.inOut" },
+        scrollTrigger: {
+          trigger: item,
+          start: "top 60%",
+        },
+      })
 
-    let workTl = gsap.timeline({
-      clearProps: true,
-      stagger: 0.5,
-      ease: "power3inOut",
-      scrollTrigger: {
-        trigger: item,
-        start: "top 60%"
-      }
-    });
+      workTl.to(line, {
+        scaleX: 1.0,
+        duration: 1.0,
+      })
 
-    workTl.to(line, {
-      scaleX: 1.0,
-      duration: 1.0
+      workTl.from(workSplit.lines, {
+        opacity: 0,
+        y: 150,
+        stagger: 0.1,
+      }, '-=0.5')
     })
+  })
+})
 
-    workTl.from(workText, {
-      opacity: 0,
-      y: 150
-    }, '-= 0.5')
-  });
-
+onUnmounted(() => {
+  splits.forEach((s) => s.revert())
+  ctx?.revert()
 })
 </script>
 
@@ -63,7 +69,7 @@ onMounted(() => {
     <div class="work__inner">
       <h3 class="title-lg is-bold text-split">WORK</h3>
       <div class="work-items">
-        <article 
+        <article
           v-for="projectItem in projectsList"
           :key="projectItem.id"
           class="work-items__item" >

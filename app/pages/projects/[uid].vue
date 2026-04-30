@@ -1,9 +1,8 @@
 <script setup lang="ts">
 import { components } from "~/slices";
-import { VueLenis, useLenis } from 'lenis/vue'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger';
-import textEffect  from '~/utils/textEffect';
+import textEffect from '~/utils/textEffect';
 
 defineOptions({
   inheritAttrs: false,
@@ -26,9 +25,11 @@ useSeoMeta({
 
 const lerp = ref(0.1)
 
-const autoRaf = ref(true)
+const autoRaf = ref(false)
 
 const lenisRef = ref()
+
+let textEffectCleanup: (() => void) | null = null
 
 watchEffect((onInvalidate) => {
   if (!lenisRef.value?.lenis) return
@@ -47,40 +48,20 @@ watchEffect((onInvalidate) => {
 
 
 onMounted(() => {
+  document.fonts.ready.then(() => {
+    textEffectCleanup = textEffect()
+    ScrollTrigger.refresh()
+  })
+})
 
-  gsap.registerPlugin(ScrollTrigger)
-
-  ScrollTrigger.refresh()
-
-  textEffect()
-
-  // let mm = gsap.matchMedia();
-
-  // mm.add("(min-width: 800px)", () => {
-
-  //   const scrollItems = gsap.utils.toArray('[data-scroll-trigger]') as HTMLElement[]
-
-  //   scrollItems.forEach((scrollItem) => 
-
-  //     gsap.to('[data-speed]', {
-  //       yPercent: -100 * parseFloat(scrollItem.getAttribute('data-speed') ?? '0'),
-  //       ease: 'none',
-  //       scrollTrigger: {
-  //         start: 0,
-  //         end: () => "+=" + ScrollTrigger.maxScroll(window),
-  //         invalidateOnRefresh: true,
-  //         scrub: true,
-  //         markers: true,
-  //       },
-  //     })
-  //   )
-  // });
+onUnmounted(() => {
+  textEffectCleanup?.()
 })
 </script>
 
 <template>
   <div id="project">
-    <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }"> 
+    <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
       <section class="hero">
         <div class="hero__inner">
           <div class="hero__title">
