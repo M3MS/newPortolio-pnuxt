@@ -60,7 +60,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div id="project">
+  <main id="project">
     <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
       <section class="hero">
         <div class="hero__inner">
@@ -93,7 +93,7 @@ onUnmounted(() => {
         </div>
       </section>
     </vue-lenis>
-  </div>
+  </main>
 </template>
 <style lang="scss" scoped >
   #project {

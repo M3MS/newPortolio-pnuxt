@@ -76,7 +76,7 @@
 	}
 
 	.work {
-		margin-bottom: 25vh;
+		padding-bottom: 25vh;
 		
 		.work-items {
 			max-width: 90vw;
@@ -197,7 +197,6 @@
 			display: flex;
 			flex-wrap: wrap;
 			flex-direction: column;
-			justify-content: space-between;
 			min-height: 80vh;
 
 			@media (min-width: 768px) {
@@ -219,8 +218,8 @@
 			color: #010101;
 
 			@media (min-width: 768px) {
-				max-width: 25vw;
-				margin-left: 68vw;
+				max-width: 500px;
+				margin: auto 55px 5vw auto;
 				font-size: 1.2vw;
 			}
 		}

@@ -22,13 +22,15 @@ defineProps(
     <div class="about__inner">
       <h3  data-scroll data-scroll-speed="3" class="about__title title-lg is-bold text-split">ABOUT</h3>
       <PrismicImage :field="slice.primary.background" class="about__img" />
-      <PrismicText 
-        :field="slice.primary.body"
-        wrapper="p"
-        data-scroll 
-        data-scroll-speed="4" 
-        class="about__text anim-text text-split"
-      />
+      <div class="is-flex align-end">
+        <PrismicText
+            :field="slice.primary.body"
+            wrapper="p"
+            data-scroll
+            data-scroll-speed="4"
+            class="about__text anim-text text-split"
+        />
+      </div>
     </div>
   </section>
 

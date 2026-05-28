@@ -66,7 +66,6 @@ onUnmounted(() => {
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-
     class="techno"
   >
     <PrismicText

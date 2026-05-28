@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { useOverlayRef } from '~/composables/useOverlayRef'
 import Overlay from '~/components/Overlay.vue'
-
 import Cursor from '~/components/Cursor.vue'
 
 const prismic = usePrismic()

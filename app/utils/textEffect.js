@@ -3,7 +3,6 @@ import SplitText from 'gsap/SplitText'
 
 export default function textEffect(scope) {
     const splits = []
-
     const ctx = gsap.context(() => {
         gsap.utils.toArray('.text-split').forEach((el) => {
             const split = new SplitText(el, { type: 'lines, words' })

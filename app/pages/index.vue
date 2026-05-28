@@ -76,9 +76,10 @@ onMounted(() => {
       },
     })
 
+    console.log(animMesh);
+
     cameraTl
         .to(sceneInstance.camera.position, { x: 3, y: 0, z: 4.5 })
-        .to(animMesh.material.uniforms.uNoiseDensity, {value: 8.8, duration: 2.5})
         .to(sceneInstance.camera.position, { x: 0, y: 0.5, z: 8, duration: 2.5})
         .to(animMesh.material.uniforms.uNoiseDensity, {value: 3.8, duration: 2.5})
         .to(sceneInstance.camera.position, { x: 3.5, y: 1, z: 3.5, duration: 2.5 })
@@ -96,6 +97,7 @@ onUnmounted(() => {
   ctx?.revert()
   sceneInstance?.cleanup()
 })
+
 </script>
 
 <template>
