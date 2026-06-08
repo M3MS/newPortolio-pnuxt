@@ -1,0 +1,8 @@
+{
+  "repositoryName": "mehdy-elm",
+  "routes": [
+    { "type": "page", "uid": "home", "path": "/" },
+    { "type": "page", "path": "/:uid" },
+    { "type": "projects", "path": "/projects/:uid" }
+  ]
+}

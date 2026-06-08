@@ -18,7 +18,7 @@
             "label": "Introduction",
             "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
+            "multi": "paragraph,strong,em"
           }
         }
       },

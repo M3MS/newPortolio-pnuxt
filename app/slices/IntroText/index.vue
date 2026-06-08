@@ -15,13 +15,16 @@ defineProps(
   <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
-
     class="hello"
   >
     <div class="hello__inner">
-      <h3 class="hello__text text-split anim-text">
-        <span>Hi there!</span>
-        <PrismicText :field="slice.primary.intro_text" wrapper="p" class="text-split"/>
+      <h3 class="hello__text">
+        <span class="text-split">Hi there!</span>
+        <PrismicRichText
+          :field="slice.primary.intro_text"
+          wrapper="div"
+          class="text-split"
+        />
       </h3>
     </div>
   </section>

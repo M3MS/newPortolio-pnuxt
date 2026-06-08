@@ -20,13 +20,13 @@
             "thumbnails": []
           }
         },
-        "body": {
+        "about_text": {
           "type": "StructuredText",
           "config": {
             "label": "Body",
             "placeholder": "",
-            "allowTargetBlank": false,
-            "single": "paragraph,strong,em"
+            "allowTargetBlank": true,
+            "multi": "paragraph,strong,em,hyperlink"
           }
         }
       },

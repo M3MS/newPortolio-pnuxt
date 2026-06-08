@@ -1,36 +1,42 @@
 @use "variables" as *;
 
 html {
-	color-scheme: black;
-	position: relative;
-	overflow-x: hidden;
-	scroll-behavior: smooth;
-	font-size: 62.5%;
-	line-height: 1.4;
+  color-scheme: black;
+  position: relative;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  font-size: 62.5%;
+  line-height: 1.4;
 }
 
 *,
 *:before,
 *:after {
-	box-sizing: border-box;
+  box-sizing: border-box;
 }
 
-body{
-    background: $dark-blue;
-    --cursor-fill: $green;
-    --cursor-text: $black;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    cursor: crosshair;
+body {
+  background: $dark-blue;
+  --cursor-fill: $green;
+  --cursor-text: $black;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  cursor: crosshair;
 }
 
-canvas{
-	display: block;
+canvas {
+  display: block;
 }
 
-is-flex {
-	display: flex;
-	flex-wrap: wrap;
+.is-flex {
+  display: flex;
+  flex-wrap: wrap;
 }
 
-.align-end { align-items: flex-end; }
+.align-end {
+  align-items: flex-end;
+}
+
+.justify-end {
+  justify-content: flex-end;
+}

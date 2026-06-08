@@ -1,8 +1,6 @@
 <script setup lang="ts">
 import type { Content } from "@prismicio/client";
 
-// The array passed to `getSliceComponentProps` is purely optional.
-// Consider it as a visual hint for you when templating your slice.
 defineProps(
   getSliceComponentProps<Content.AboutSlice>([
     "slice",
@@ -14,24 +12,21 @@ defineProps(
 </script>
 
 <template>
-  <section 
+  <section
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="about"
   >
     <div class="about__inner">
-      <h3  data-scroll data-scroll-speed="3" class="about__title title-lg is-bold text-split">ABOUT</h3>
+      <h2 class="about__title title-lg is-bold text-split">ABOUT</h2>
       <PrismicImage :field="slice.primary.background" class="about__img" />
-      <div class="is-flex align-end">
-        <PrismicText
-            :field="slice.primary.body"
-            wrapper="p"
-            data-scroll
-            data-scroll-speed="4"
-            class="about__text anim-text text-split"
+      <div class="is-flex justify-end">
+        <PrismicRichText
+          :field="slice.primary.about_text"
+          wrapper="div"
+          class="about__text text-split"
         />
       </div>
     </div>
   </section>
-
 </template>

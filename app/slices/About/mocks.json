@@ -26,13 +26,13 @@
 				"__TYPE__": "ImageContent",
 				"thumbnails": {}
 			},
-			"body": {
+			"about_text": {
 				"__TYPE__": "StructuredTextContent",
 				"value": [
 					{
 						"type": "paragraph",
 						"content": {
-							"text": "Ipsum do aute cillum. Sint id sunt veniam sint ad laborum. Pariatur anim exercitation eu do enim adipisicing duis nulla ex."
+							"text": "Veniam amet nulla aliquip occaecat magna irure dolore elit enim."
 						}
 					}
 				]
