@@ -460,6 +460,17 @@ export type IntroTextSlice = prismic.SharedSlice<
  */
 export interface PifPafSliceDefaultPrimary {
   /**
+   * Pin Image field in *PifPaf → Default → Primary*
+   *
+   * - **Field Type**: Boolean
+   * - **Placeholder**: *None*
+   * - **Default Value**: false
+   * - **API ID Path**: pif_paf.default.primary.pin_image
+   * - **Documentation**: https://prismic.io/docs/fields/boolean
+   */
+  pin_image: prismic.BooleanField;
+
+  /**
    * Image field in *PifPaf → Default → Primary*
    *
    * - **Field Type**: Image

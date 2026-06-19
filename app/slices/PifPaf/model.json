@@ -12,6 +12,15 @@
       "description": "Default",
       "imageUrl": "",
       "primary": {
+        "pin_image": {
+          "type": "Boolean",
+          "config": {
+            "label": "Pin Image",
+            "placeholder_false": "false",
+            "placeholder_true": "false",
+            "default_value": false
+          }
+        },
         "image": {
           "type": "Image",
           "config": {

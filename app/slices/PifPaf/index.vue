@@ -1,6 +1,8 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import type { Content } from "@prismicio/client";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // The array passed to `getSliceComponentProps` is purely optional.
 // Consider it as a visual hint for you when templating your slice.
@@ -23,6 +25,25 @@ const speed = computed<number>(() => {
   const value = 0.7 + r * 0.3; // range [0.7, 1.0)
   return Number(value.toFixed(2));
 });
+
+const isPined = props.slice.primary.pin_image;
+console.log(isPined);
+
+if (isPined) {
+  let ctx: any = null;
+
+  onMounted(() => {
+    ctx = gsap.context(() => {
+      ScrollTrigger.create({
+        trigger: ".media",
+        start: "top top",
+        end: "bottom 80%",
+        pin: ".text-content",
+        markers: true,
+      });
+    });
+  });
+}
 </script>
 
 <template>
@@ -32,6 +53,7 @@ const speed = computed<number>(() => {
     class="pifpaf"
     :class="{
       'pifpaf--revert': slice.variation === 'revert',
+      'pifpaf--pined': slice.primary.pin_image,
     }"
   >
     <div class="text-content">
@@ -82,7 +104,7 @@ const speed = computed<number>(() => {
   @media (min-width: 800px) {
     flex-direction: row;
     padding: 10vw 0;
-    align-items: center;
+    //align-items: center;
     justify-content: space-around;
   }
 
@@ -100,6 +122,7 @@ const speed = computed<number>(() => {
 
   .media {
     width: 70vw;
+    overflow-y: scroll;
     position: relative;
     margin-left: auto;
     will-change: transform;
@@ -110,7 +133,7 @@ const speed = computed<number>(() => {
       object-fit: cover;
       object-position: center;
       border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 5px;
+      border-radius: 15px;
     }
 
     video {
@@ -131,6 +154,18 @@ const speed = computed<number>(() => {
         margin-left: 0;
         margin-right: auto;
       }
+    }
+  }
+
+  &--pined {
+    .text-content {
+      display: flex;
+      align-items: center;
+      height: 100vh !important;
+    }
+
+    .media {
+      max-width: 1200px;
     }
   }
 }
