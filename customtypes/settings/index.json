@@ -1,47 +1,47 @@
 {
   "format": "custom",
   "id": "settings",
-  "label": "Settings",
-  "repeatable": false,
-  "status": true,
   "json": {
     "Main": {
       "site_title": {
-        "type": "Text",
         "config": {
           "label": "Site Title",
           "placeholder": "Site Title"
-        }
+        },
+        "type": "Text"
       },
       "meta_description": {
-        "type": "Text",
         "config": {
           "label": "Meta Description",
           "placeholder": ""
-        }
+        },
+        "type": "Text"
       },
       "meta_image": {
-        "type": "Image",
         "config": {
-          "label": "Meta Image",
           "constraint": {
-            "width": 2400,
-            "height": 1260
+            "height": 1260,
+            "width": 2400
           },
+          "label": "Meta Image",
           "thumbnails": []
-        }
+        },
+        "type": "Image"
       },
       "footer_nav": {
-        "type": "Link",
         "config": {
-          "label": "Footer Nav",
-          "placeholder": "",
-          "select": null,
           "allowTargetBlank": true,
           "allowText": true,
-          "repeat": true
-        }
+          "label": "Footer Nav",
+          "placeholder": "",
+          "repeat": true,
+          "select": null
+        },
+        "type": "Link"
       }
     }
-  }
+  },
+  "label": "Settings",
+  "repeatable": false,
+  "status": true
 }

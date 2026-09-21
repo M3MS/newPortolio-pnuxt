@@ -1,31 +1,31 @@
 {
-  "id": "rich_text",
-  "type": "SharedSlice",
-  "name": "RichText",
   "description": "RichText",
+  "id": "rich_text",
+  "name": "RichText",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "sktwi1xtmkfgx8626",
       "description": "RichText",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/rich_text/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "content": {
-          "type": "StructuredText",
           "config": {
-            "label": "Content",
-            "placeholder": "Lorem ipsum...",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,embed,list-item",
+            "label": "Content",
             "labels": [
               "codespan"
-            ]
-          }
+            ],
+            "multi": "paragraph,preformatted,heading1,heading2,heading3,strong,em,hyperlink,embed,list-item",
+            "placeholder": "Lorem ipsum..."
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {},
-      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format"
+      "version": "sktwi1xtmkfgx8626"
     }
   ]
 }

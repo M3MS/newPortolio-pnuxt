@@ -1,39 +1,39 @@
 {
-  "id": "projects_list",
-  "type": "SharedSlice",
-  "name": "ProjectsList",
   "description": "ProjectsList",
+  "id": "projects_list",
+  "name": "ProjectsList",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/projects_list/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "projects_items": {
-          "type": "Group",
           "config": {
-            "label": "Projects Items",
-            "repeat": true,
             "fields": {
               "project": {
-                "type": "Link",
                 "config": {
-                  "label": "Project",
-                  "select": "document",
-                  "repeat": false,
                   "customtypes": [
                     "project"
-                  ]
-                }
+                  ],
+                  "label": "Project",
+                  "repeat": false,
+                  "select": "document"
+                },
+                "type": "Link"
               }
-            }
-          }
+            },
+            "label": "Projects Items",
+            "repeat": true
+          },
+          "type": "Group"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

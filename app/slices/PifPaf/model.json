@@ -1,80 +1,80 @@
 {
-  "id": "pif_paf",
-  "type": "SharedSlice",
-  "name": "PifPaf",
   "description": "PifPaf",
+  "id": "pif_paf",
+  "name": "PifPaf",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/pif_paf/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "pin_image": {
-          "type": "Boolean",
           "config": {
+            "default_value": false,
             "label": "Pin Image",
             "placeholder_false": "false",
-            "placeholder_true": "false",
-            "default_value": false
-          }
+            "placeholder_true": "false"
+          },
+          "type": "Boolean"
         },
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "video_link": {
-          "type": "Text",
           "config": {
             "label": "Video Link",
             "placeholder": ""
-          }
+          },
+          "type": "Text"
         },
         "text_content": {
-          "type": "StructuredText",
           "config": {
-            "label": "Text Content",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,o-list-item,hyperlink,list-item"
-          }
+            "label": "Text Content",
+            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,o-list-item,hyperlink,list-item",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     },
     {
-      "id": "revert",
-      "name": "Revert",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "revert",
+      "imageUrl": "https://images.prismic.io/slice-machine/621a5ec4-0387-4bc5-9860-2dd46cbc07cd_default_ss.png?auto=compress,format",
+      "items": {},
+      "name": "Revert",
       "primary": {
         "image": {
-          "type": "Image",
           "config": {
-            "label": "Image",
             "constraint": {},
+            "label": "Image",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
         "text_content": {
-          "type": "StructuredText",
           "config": {
-            "label": "Text Content",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,o-list-item,hyperlink,list-item"
-          }
+            "label": "Text Content",
+            "multi": "paragraph,heading3,heading4,heading5,heading6,strong,em,o-list-item,hyperlink,list-item",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }
