@@ -1,28 +1,28 @@
 {
-  "id": "intro_text",
-  "type": "SharedSlice",
-  "name": "IntroText",
   "description": "IntroText",
+  "id": "intro_text",
+  "name": "IntroText",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/intro_text/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "intro_text": {
-          "type": "StructuredText",
           "config": {
-            "label": "Introduction",
-            "placeholder": "",
             "allowTargetBlank": true,
-            "multi": "paragraph,preformatted,heading1,heading2,heading3,heading4,heading5,heading6,strong,em"
-          }
+            "label": "Introduction",
+            "multi": "paragraph,strong,em",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

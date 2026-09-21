@@ -1,0 +1,33 @@
+{
+  "description": "Playlists",
+  "id": "playlists",
+  "name": "Playlists",
+  "type": "SharedSlice",
+  "variations": [
+    {
+      "description": "Default",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/playlists/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
+      "primary": {
+        "section_title": {
+          "type": "Text",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "For your ears"
+          }
+        },
+        "tidal_key": {
+          "config": {
+            "label": "Tidal Key",
+            "placeholder": ""
+          },
+          "type": "Text"
+        }
+      },
+      "version": "initial"
+    }
+  ]
+}

@@ -1,126 +1,126 @@
 <script setup lang="ts">
-import { components } from '~/slices'
-import { ref, watchEffect } from 'vue'
-import { VueLenis, useLenis } from 'lenis/vue'
-import { Scene } from '../scenes/BlobSceneClass'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import textEffect from '~/utils/textEffect'
+import { components } from "~/slices";
+import { ref, watchEffect } from "vue";
+import { Scene } from "~/scenes/BlobSceneClass";
+import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+import textEffect from "~/utils/textEffect";
 
-const prismic = usePrismic()
-
-const { data: page } = await useAsyncData('index', () =>
-  prismic.client.getByUID('page', 'home', { 
-    fetchLinks: [
-      'project.company',
-      'project.tech_stack',
-    ],
-  })
-)
+const prismic = usePrismic();
+const route = useRoute();
+const { data: page } = await useAsyncData("index", () =>
+  prismic.client.getByUID("page", (route.params.uid as string) ?? "home", {
+    fetchLinks: ["project.company", "project.tech_stack"],
+  }),
+);
 
 useSeoMeta({
-    title: page.value?.data.meta_title,
-    ogTitle: page.value?.data.meta_title,
-    description: page.value?.data.meta_description,
-    ogDescription: page.value?.data.meta_description,
-    ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image)),
-})
+  title: page.value?.data.meta_title,
+  ogTitle: page.value?.data.meta_title,
+  description: page.value?.data.meta_description,
+  ogDescription: page.value?.data.meta_description,
+  ogImage: computed(() => prismic.asImageSrc(page.value?.data.meta_image)),
+});
 
-const props = defineProps(['class'])
+const blob = ref(null);
 
-const blob = ref(null)   
+const lerp = ref(0.1);
 
-const lerp = ref(0.1)
+const autoRaf = ref(false);
 
-const autoRaf = ref(true)
+const lenisRef = ref();
 
-const lenisRef = ref()
+let sceneInstance: any = null;
+let textEffectCleanup: (() => void) | null = null;
+let ctx: any = null;
 
 watchEffect((onInvalidate) => {
-  if (!lenisRef.value?.lenis) return
+  if (!lenisRef.value?.lenis) return;
 
-  lenisRef.value.lenis.on('scroll', ScrollTrigger.update)
+  lenisRef.value.lenis.on("scroll", ScrollTrigger.update);
 
-  function update(time) {
-    lenisRef.value?.lenis?.raf(time * 1000)
+  function update(time: number) {
+    lenisRef.value?.lenis?.raf(time * 1000);
   }
-  gsap.ticker.add(update)
+  gsap.ticker.add(update);
 
   onInvalidate(() => {
-    gsap.ticker.remove(update)
-  })
-})
+    gsap.ticker.remove(update);
+  });
+});
 
 onMounted(() => {
-
-  gsap.registerPlugin(ScrollTrigger)
-
-  ScrollTrigger.refresh()
-
   if (!blob.value) return;
-            
-  const sceneInstance = new Scene({
-      domElement: blob.value // Pass native DOM element
-  });
 
+  sceneInstance = new Scene({ domElement: blob.value });
   const animMesh = sceneInstance.mesh;
 
-  let g1Tl = gsap.timeline({
-      clearProps: true,
+  ctx = gsap.context(() => {
+    gsap.to(".scroller, #gl-stuff", {
+      autoAlpha: 1,
+      duration: 2.0,
+      ease: "power3inOut",
+    });
+
+    const cameraTl = gsap.timeline({
       scrollTrigger: {
-          trigger: '.hello',
-          start: "top 60%",
-          scrub: 2
-      }
-  });
-
-  g1Tl.to(animMesh.rotation, {
-      x: 0.5,
-      y: -1
-  });
-
-  g1Tl.to(sceneInstance.camera.position, {
-      x: 3,
-      z: 4.5
-  }, '-= 1');
-
-  let g2Tl = gsap.timeline({
-    clearProps: true,
-    scrollTrigger: {
-        trigger: '.techno',
+        trigger: ".work",
         start: "top 80%",
-        scrub: 2
-    }
+        endTrigger: ".about",
+        end: "top 50%",
+        scrub: 2,
+      },
+    });
+
+    cameraTl
+      //.to(sceneInstance.camera.position, { x: -3, y: 0, z: 4.5 })
+      .to(sceneInstance.camera.position, { x: 0, y: 0.5, z: 8, duration: 2.5 })
+      .to(animMesh.material.uniforms.uNoiseDensity, {
+        value: 3.8,
+        duration: 2.5,
+      })
+      .to(sceneInstance.camera.position, {
+        x: 3.5,
+        y: 1,
+        z: 3.5,
+        duration: 2.5,
+      });
   });
-  
-  g2Tl.to(animMesh.material.uniforms.uNoiseDensity, {
-      value: 2.8
-  }, '-= 1');
 
-  g2Tl.to(sceneInstance.camera.position, {
-      x: 7,
-      y: -3,
-      z: -2
-  }, '-= 1');
+  gsap.from(".about__text", {
+    scrollTrigger: {
+      trigger: ".about__text",
+      start: "top 80%",
+      end: "top 50%",
+      scrub: 2,
+    },
+    autoAlpha: 0,
+    duration: 2,
+    ease: "power3inOut",
+  });
 
-  textEffect();
-
+  document.fonts.ready.then(() => {
+    textEffectCleanup = textEffect();
+    ScrollTrigger.refresh();
+  });
 });
 
 onUnmounted(() => {
-
-})
+  textEffectCleanup?.();
+  ctx?.revert();
+  sceneInstance?.cleanup();
+});
 </script>
 
 <template>
   <div>
     <vue-lenis ref="lenisRef" root :options="{ lerp, autoRaf }">
-      <div id="gl-stuff" ref="blob"></div>
+      <div id="gl-stuff" ref="blob" />
       <SliceZone
+        id="home"
         wrapper="main"
         :slices="page?.data.slices ?? []"
         :components="components"
-        id="home"
       />
     </vue-lenis>
   </div>

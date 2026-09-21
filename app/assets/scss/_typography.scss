@@ -1,100 +1,106 @@
 @use "variables" as *;
 
 @font-face {
-    font-family: 'Gilroy';
-    src: url('../fonts/Gilroy-Black.woff2') format('woff2'),
-        url('../fonts/Gilroy-Black.woff') format('woff');
-    font-weight: bold;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Gilroy";
+  src:
+    url("../fonts/Gilroy-Black.woff2") format("woff2"),
+    url("../fonts/Gilroy-Black.woff") format("woff");
+  font-weight: bold;
+  font-style: normal;
+  font-display: swap;
 }
 
 @font-face {
-    font-family: 'Gilroy';
-    src: url('../fonts/Gilroy-Regular.eot');
-    src: url('../fonts/Gilroy-Regular.eot?#iefix') format('embedded-opentype'),
-        url('../fonts/Gilroy-Regular.woff2') format('woff2'),
-        url('../fonts/Gilroy-Regular.woff') format('woff'),
-        url('../fonts/Gilroy-Regular.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
-    font-display: swap;
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Regular.eot");
+  src:
+    url("../fonts/Gilroy-Regular.eot?#iefix") format("embedded-opentype"),
+    url("../fonts/Gilroy-Regular.woff2") format("woff2"),
+    url("../fonts/Gilroy-Regular.woff") format("woff"),
+    url("../fonts/Gilroy-Regular.ttf") format("truetype");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
 }
 
 body {
-    font-family: 'Gilroy', sans-serif;
-    color: $white;
-    font-size: 1.6rem;
-    line-height: 1.2;
+  font-family: "Gilroy", sans-serif;
+  color: $white;
+  font-size: 1.6rem;
+  line-height: 1.2;
 }
 
 a {
-    color: $white;
-    text-decoration: none;
+  color: $white;
+  text-decoration: none;
 }
 
-h1, h2, h3, h4, h5, h6 {
-    margin: 0;
-    font-weight: normal;
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-weight: normal;
 }
 
 small {
-    font-size: 1rem;
+  font-size: 1rem;
 }
 
-
 .title-lg {
-    font-size: 24vw;
+  font-size: 24vw;
 
-    @media (min-width: 768px) {
-        font-size: 18vw;
-    }
+  @media (min-width: 768px) {
+    font-size: 18vw;
+  }
 }
 
 .title-md {
-    font-size: 18vw;
+  font-size: 18vw;
 
-    @media (min-width: 768px) {
-        font-size: 14vw;
-    }
+  @media (min-width: 768px) {
+    font-size: 14vw;
+  }
 }
 
-
 .title-sm {
-    font-size: 12vw;
+  font-size: 12vw;
 
-    @media (min-width: 768px) {
-        font-size: 6vw;
-    }
+  @media (min-width: 768px) {
+    font-size: 6vw;
+  }
 }
 
 .lead {
-    font-size: 4rem;
+  font-size: 4rem;
 }
 
 .is-bold {
-    font-weight: bold;
+  font-weight: bold;
 }
 
 .is-light {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 .text-center {
-    text-align: center;
+  text-align: center;
 }
 
 .text-uppercase {
-    text-transform: uppercase;
+  text-transform: uppercase;
 }
 
-.text-split > div, .intro-title > div {
-    position: relative;
-    overflow: hidden;
+.text-split > div,
+.intro-title > div {
+  position: relative;
+  overflow: hidden;
 }
 
 .hollow-text {
-    -webkit-text-stroke: 2px $white;
-    -webkit-text-fill-color: transparent;
-    color: transparent;
+  -webkit-text-stroke: 2px $white;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
 }

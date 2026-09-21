@@ -1,36 +1,36 @@
 {
-  "id": "about",
-  "type": "SharedSlice",
-  "name": "About",
   "description": "About",
+  "id": "about",
+  "name": "About",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": "",
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/about/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "items": {},
+      "name": "Default",
       "primary": {
         "background": {
-          "type": "Image",
           "config": {
-            "label": "Background",
             "constraint": {},
+            "label": "Background",
             "thumbnails": []
-          }
+          },
+          "type": "Image"
         },
-        "body": {
-          "type": "StructuredText",
+        "about_text": {
           "config": {
+            "allowTargetBlank": true,
             "label": "Body",
-            "placeholder": "",
-            "allowTargetBlank": false,
-            "single": "paragraph,strong,em"
-          }
+            "multi": "paragraph,strong,em,hyperlink",
+            "placeholder": ""
+          },
+          "type": "StructuredText"
         }
       },
-      "items": {}
+      "version": "initial"
     }
   ]
 }

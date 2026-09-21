@@ -1,14 +1,12 @@
-
-
 export const settings = {
   speed: 0.05,
   density: 2.8,
   strength: 0.8,
   frequency: 7.0,
   amplitude: 7.0,
-  intensity: 1.0
+  intensity: 1.0,
 };
-  
+
 export const noise = `
     // GLSL textureless classic 3D noise "cnoise",
     // with an RSL-style periodic variant "pnoise".

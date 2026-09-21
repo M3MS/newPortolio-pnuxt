@@ -1,16 +1,16 @@
 {
-  "id": "big_wordz",
-  "type": "SharedSlice",
-  "name": "BigWordz",
   "description": "BigWordz",
+  "id": "big_wordz",
+  "name": "BigWordz",
+  "type": "SharedSlice",
   "variations": [
     {
-      "id": "default",
-      "name": "Default",
-      "docURL": "...",
-      "version": "initial",
       "description": "Default",
-      "imageUrl": ""
+      "docURL": "...",
+      "id": "default",
+      "imageUrl": "https://images.prismic.io/mehdy-elm/shared-slices/big_wordz/default/d341af756bd7309858ecf43de7c0b9ba71b2f3a9.png?auto=compress%2Cformat",
+      "name": "Default",
+      "version": "initial"
     }
   ]
 }

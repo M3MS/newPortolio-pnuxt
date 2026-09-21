@@ -41,6 +41,10 @@
 				"__TYPE__": "FieldContent",
 				"value": "most",
 				"type": "Text"
+			},
+			"pin_image": {
+				"__TYPE__": "BooleanContent",
+				"value": true
 			}
 		},
 		"items": []
