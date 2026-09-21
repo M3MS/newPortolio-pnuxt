@@ -8,6 +8,7 @@ export const components = defineSliceZoneComponents({
   big_wordz: defineAsyncComponent(() => import("./BigWordz/index.vue")),
   intro_text: defineAsyncComponent(() => import("./IntroText/index.vue")),
   pif_paf: defineAsyncComponent(() => import("./PifPaf/index.vue")),
+  playlists: defineAsyncComponent(() => import("./Playlists/index.vue")),
   projects_list: defineAsyncComponent(() => import("./ProjectsList/index.vue")),
   rich_text: defineAsyncComponent(() => import("./RichText/index.vue")),
   skills: defineAsyncComponent(() => import("./Skills/index.vue")),

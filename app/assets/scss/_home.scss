@@ -20,11 +20,16 @@
     &__inner {
       width: 100%;
       position: relative;
-      margin-left: 0.5vw;
+      display: flex;
+      align-items: center;
+      width: 100%;
+      height: 100%;
+      align-items: center;
+      margin-left: 1.5vw;
 
       h1.intro-title {
         position: relative;
-        font-size: 27vw;
+        font-size: 22vw;
         text-transform: uppercase;
         font-weight: bold;
         line-height: 0.9;
@@ -33,11 +38,11 @@
         opacity: 0;
 
         span.small {
-          font-size: 8vw;
+          font-size: 3vw;
         }
 
         @media (min-width: 768px) {
-          font-size: 18vw;
+          font-size: 10vw;
         }
       }
     }
@@ -69,73 +74,6 @@
         font-weight: bold;
         display: block;
         margin-bottom: 8vh;
-      }
-    }
-  }
-
-  .work {
-    padding-bottom: 25vh;
-
-    .work-items {
-      max-width: 90vw;
-      margin: 6rem auto;
-
-      @media (min-width: 768px) {
-        max-width: 60vw;
-        position: relative;
-
-        .distort {
-          position: absolute;
-          pointer-events: none;
-          will-change: transform;
-        }
-
-        .distort__img {
-          opacity: 0;
-          //mix-blend-mode: exclusion;
-        }
-      }
-
-      &__item {
-        position: relative;
-        width: 100%;
-        display: block;
-        text-transform: uppercase;
-
-        a {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 5rem 0 2rem 1rem;
-          overflow: hidden;
-
-          h4 {
-            font-size: 6vw;
-            line-height: 0.9;
-            transition: all 0.3s ease-in-out;
-
-            @media (min-width: 768px) {
-              font-size: 2.5vw;
-            }
-          }
-
-          &:hover {
-            h4 {
-              //transform: skewX(-20deg);
-              letter-spacing: 10px;
-            }
-          }
-        }
-
-        .line {
-          width: 100%;
-          height: 1px;
-          background: #fff;
-          position: absolute;
-          bottom: 0;
-          transform: scaleX(0);
-          transform-origin: left;
-        }
       }
     }
   }

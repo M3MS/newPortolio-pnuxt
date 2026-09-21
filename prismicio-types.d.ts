@@ -21,32 +21,30 @@ type PickContentRelationshipFieldData<
 > =
   // Content relationship fields
   {
-    [TSubRelationship in Extract<
-      TRelationship["fields"][number],
-      prismic.CustomTypeModelFetchContentRelationshipLevel1
-    > as TSubRelationship["id"]]: ContentRelationshipFieldWithData<
-      TSubRelationship["customtypes"],
-      TLang
-    >;
+    [
+      TSubRelationship in Extract<
+        TRelationship["fields"][number],
+        prismic.CustomTypeModelFetchContentRelationshipLevel1
+      > as TSubRelationship["id"]
+    ]: ContentRelationshipFieldWithData<TSubRelationship["customtypes"], TLang>;
   } & // Group
   {
-    [TGroup in Extract<
-      TRelationship["fields"][number],
-      | prismic.CustomTypeModelFetchGroupLevel1
-      | prismic.CustomTypeModelFetchGroupLevel2
-    > as TGroup["id"]]: TData[TGroup["id"]] extends prismic.GroupField<
-      infer TGroupData
-    >
+    [
+      TGroup in Extract<
+        TRelationship["fields"][number],
+        | prismic.CustomTypeModelFetchGroupLevel1
+        | prismic.CustomTypeModelFetchGroupLevel2
+      > as TGroup["id"]
+    ]: TData[TGroup["id"]] extends prismic.GroupField<infer TGroupData>
       ? prismic.GroupField<
           PickContentRelationshipFieldData<TGroup, TGroupData, TLang>
         >
       : never;
   } & // Other fields
   {
-    [TFieldKey in Extract<
-      TRelationship["fields"][number],
-      string
-    >]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
+    [
+      TFieldKey in Extract<TRelationship["fields"][number], string>
+    ]: TFieldKey extends keyof TData ? TData[TFieldKey] : never;
   };
 
 type ContentRelationshipFieldWithData<
@@ -55,10 +53,9 @@ type ContentRelationshipFieldWithData<
     | readonly (prismic.CustomTypeModelFetchCustomTypeLevel2 | string)[],
   TLang extends string = string,
 > = {
-  [ID in Exclude<
-    TCustomType[number],
-    string
-  >["id"]]: prismic.ContentRelationshipField<
+  [
+    ID in Exclude<TCustomType[number], string>["id"]
+  ]: prismic.ContentRelationshipField<
     ID,
     TLang,
     PickContentRelationshipFieldData<
@@ -150,11 +147,11 @@ export type PageDocument<Lang extends string = string> =
 type ProjectDocumentDataSlicesSlice = PifPafSlice | RichTextSlice;
 
 /**
- * Content for Project documents
+ * Content for Case Studies documents
  */
 interface ProjectDocumentData {
   /**
-   * Hero field in *Project*
+   * Hero field in *Case Studies*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -165,7 +162,7 @@ interface ProjectDocumentData {
   hero: prismic.ImageField<never>;
 
   /**
-   * Company field in *Project*
+   * Company field in *Case Studies*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -176,7 +173,7 @@ interface ProjectDocumentData {
   company: prismic.RichTextField;
 
   /**
-   * Description field in *Project*
+   * Description field in *Case Studies*
    *
    * - **Field Type**: Rich Text
    * - **Placeholder**: *None*
@@ -187,7 +184,7 @@ interface ProjectDocumentData {
   description: prismic.RichTextField;
 
   /**
-   * Tech Stack field in *Project*
+   * Tech Stack field in *Case Studies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
@@ -198,7 +195,7 @@ interface ProjectDocumentData {
   tech_stack: prismic.KeyTextField;
 
   /**
-   * Slice Zone field in *Project*
+   * Slice Zone field in *Case Studies*
    *
    * - **Field Type**: Slice Zone
    * - **Placeholder**: *None*
@@ -207,7 +204,7 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/slices
    */
   slices: prismic.SliceZone<ProjectDocumentDataSlicesSlice>; /**
-   * Meta Title field in *Project*
+   * Meta Title field in *Case Studies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A title of the page used for social media and search engines
@@ -218,7 +215,7 @@ interface ProjectDocumentData {
   meta_title: prismic.KeyTextField;
 
   /**
-   * Meta Description field in *Project*
+   * Meta Description field in *Case Studies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: A brief summary of the page
@@ -229,7 +226,7 @@ interface ProjectDocumentData {
   meta_description: prismic.KeyTextField;
 
   /**
-   * Meta Image field in *Project*
+   * Meta Image field in *Case Studies*
    *
    * - **Field Type**: Image
    * - **Placeholder**: *None*
@@ -241,7 +238,7 @@ interface ProjectDocumentData {
 }
 
 /**
- * Project document from Prismic
+ * Case Studies document from Prismic
  *
  * - **API ID**: `project`
  * - **Repeatable**: `true`
@@ -324,9 +321,7 @@ export type SettingsDocument<Lang extends string = string> =
   >;
 
 export type AllDocumentTypes =
-  | PageDocument
-  | ProjectDocument
-  | SettingsDocument;
+  PageDocument | ProjectDocument | SettingsDocument;
 
 /**
  * Primary content in *About → Default → Primary*
@@ -567,6 +562,61 @@ type PifPafSliceVariation = PifPafSliceDefault | PifPafSliceRevert;
 export type PifPafSlice = prismic.SharedSlice<"pif_paf", PifPafSliceVariation>;
 
 /**
+ * Primary content in *Playlists → Default → Primary*
+ */
+export interface PlaylistsSliceDefaultPrimary {
+  /**
+   * Section Title field in *Playlists → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: For your ears
+   * - **API ID Path**: playlists.default.primary.section_title
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  section_title: prismic.KeyTextField;
+
+  /**
+   * Tidal Key field in *Playlists → Default → Primary*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: playlists.default.primary.tidal_key
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  tidal_key: prismic.KeyTextField;
+}
+
+/**
+ * Default variation for Playlists Slice
+ *
+ * - **API ID**: `default`
+ * - **Description**: Default
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PlaylistsSliceDefault = prismic.SharedSliceVariation<
+  "default",
+  Simplify<PlaylistsSliceDefaultPrimary>,
+  never
+>;
+
+/**
+ * Slice variation for *Playlists*
+ */
+type PlaylistsSliceVariation = PlaylistsSliceDefault;
+
+/**
+ * Playlists Shared Slice
+ *
+ * - **API ID**: `playlists`
+ * - **Description**: Playlists
+ * - **Documentation**: https://prismic.io/docs/slices
+ */
+export type PlaylistsSlice = prismic.SharedSlice<
+  "playlists",
+  PlaylistsSliceVariation
+>;
+
+/**
  * Item in *ProjectsList → Default → Primary → Projects Items*
  */
 export interface ProjectsListSliceDefaultPrimaryProjectsItemsItem {
@@ -762,6 +812,10 @@ declare module "@prismicio/client" {
       PifPafSliceVariation,
       PifPafSliceDefault,
       PifPafSliceRevert,
+      PlaylistsSlice,
+      PlaylistsSliceDefaultPrimary,
+      PlaylistsSliceVariation,
+      PlaylistsSliceDefault,
       ProjectsListSlice,
       ProjectsListSliceDefaultPrimaryProjectsItemsItem,
       ProjectsListSliceDefaultPrimary,

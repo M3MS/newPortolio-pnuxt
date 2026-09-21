@@ -52,10 +52,10 @@ onUnmounted(() => {
   >
     <div class="intro__inner">
       <h1 class="intro-title">
-        Code<br />
-        <span class="hollow-text">Sweat<span class="small">&</span></span
-        ><br />
-        Tears
+        <span class="small">Hey I'm Mehdy</span><br/>
+        <span class="hollow-text">Web Developer</span><br/>
+        <span class="small">&amp; </span>
+        <span class="hollow-text">Designer</span>
       </h1>
     </div>
   </section>

@@ -27,6 +27,18 @@ let ctx: any = null;
 onMounted(() => {
   ctx = gsap.context(() => {
     const workItems = gsap.utils.toArray<HTMLElement>(".work-items__item");
+    const workSection = document.querySelector(".work");
+
+    gsap.to(workSection, {
+      backgroundColor: "#ffffff",
+      duration: 1.0,
+      ease: "power3.inOut",
+      scrollTrigger: {
+        trigger: workSection,
+        start: "top 50%",
+        markers: true,
+      },
+    });
 
     workItems.forEach((item) => {
       const line = item.querySelector(".line");
@@ -73,7 +85,7 @@ onUnmounted(() => {
     class="work"
   >
     <div class="work__inner">
-      <h3 class="title-lg is-bold text-split">WORK</h3>
+      <h3 class="title-md is-bold text-split">WORK</h3>
       <div class="work-items">
         <article
           v-for="projectItem in projectsList"
@@ -81,8 +93,8 @@ onUnmounted(() => {
           class="work-items__item"
         >
           <PrismicLink :document="projectItem">
-            <PrismicText :field="projectItem.data.company" wrapper="h4" />
-            <span class="is-bold">{{ projectItem.data.tech_stack }}</span>
+            <PrismicText :field="projectItem.data.company" wrapper="h4" class="is-bold" />
+            <span>{{ projectItem.data.tech_stack }}</span>
           </PrismicLink>
           <span class="line"></span>
         </article>
@@ -90,3 +102,64 @@ onUnmounted(() => {
     </div>
   </section>
 </template>
+
+<style scoped lang="scss">
+
+.work {
+    height: 120svh;
+    color: $black;
+    padding: 10vh 0;
+
+    .work-items {
+      max-width: 90vw;
+      margin: 6rem auto;
+
+      @media (min-width: 768px) {
+        max-width: 60vw;
+        position: relative;
+      }
+
+      &__item {
+        position: relative;
+        width: 100%;
+        display: block;
+        text-transform: uppercase;
+
+        a {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 5rem 0 2rem 1rem;
+          overflow: hidden;
+          color: $black;
+
+          h4 {
+            font-size: 6vw;
+            line-height: 0.9;
+            transition: all 0.3s ease-in-out;
+
+            @media (min-width: 768px) {
+              font-size: 2.5vw;
+            }
+          }
+
+          &:hover {
+            h4 {
+              letter-spacing: 10px;
+            }
+          }
+        }
+
+        .line {
+          width: 100%;
+          height: 1px;
+          background: $black;
+          position: absolute;
+          bottom: 0;
+          transform: scaleX(0);
+          transform-origin: left;
+        }
+      }
+    }
+  }
+</style>

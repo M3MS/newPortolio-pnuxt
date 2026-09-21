@@ -7,7 +7,7 @@ const prismic = usePrismic()
 
 const { setOverlayRef } = useOverlayRef()
 
-const { data: settings } = await useAsyncData( () => prismic.client.getSingle('settings'))
+const { data: settings } = await useAsyncData('settings', () => prismic.client.getSingle('settings'))
 
 useSeoMeta({
     title: settings.value?.data.site_title,

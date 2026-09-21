@@ -26,10 +26,10 @@ const speed = computed<number>(() => {
   return Number(value.toFixed(2));
 });
 
-const isPined = props.slice.primary.pin_image;
-console.log(isPined);
+const isPined = computed(() => props.slice.primary.pin_image);
+// console.log(isPined.value);
 
-if (isPined) {
+if (isPined.value) {
   let ctx: any = null;
 
   onMounted(() => {

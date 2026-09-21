@@ -1,0 +1,33 @@
+{
+  "id": "playlists",
+  "type": "SharedSlice",
+  "name": "Playlists",
+  "description": "Playlists",
+  "variations": [
+    {
+      "id": "default",
+      "name": "Default",
+      "docURL": "...",
+      "version": "initial",
+      "description": "Default",
+      "imageUrl": "",
+      "primary": {
+        "section_title": {
+          "type": "Text",
+          "config": {
+            "label": "Section Title",
+            "placeholder": "For your ears"
+          }
+        },
+        "tidal_key": {
+          "type": "Text",
+          "config": {
+            "label": "Tidal Key",
+            "placeholder": ""
+          }
+        }
+      },
+      "items": {}
+    }
+  ]
+}

@@ -5,6 +5,7 @@ import { useTransition } from '~/composables/transition'
 const transitionSetup = {
   name: 'page-transition',
   mode: 'out-in',
+  css: false,
 
   onBeforeEnter: (el: Element) => {
     gsap.set(el, { opacity: 0 })
@@ -23,26 +24,41 @@ const transitionSetup = {
       return done()
     }
 
-    // Reveal: overlay path shrinks away to uncover the new page
+    // openMenu: cover from the bottom, then reveal toward the top.
     gsap.timeline({
       onComplete() {
         toggleTransitionComplete(true)
         done()
       },
     })
+    .set(overlay, { autoAlpha: 1 })
+    .set(overlayPath, {
+      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
+    })
+    .to(overlayPath, {
+      duration: 0.8,
+      ease: 'power4.in',
+      attr: { d: 'M 0 100 V 50 Q 50 0 100 50 V 100 z' }
+    }, 0)
+    .to(overlayPath, {
+      duration: 0.3,
+      ease: 'power2',
+      attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
+    })
+    // Show the entering page only once the overlay fully covers it.
     .set(el, { opacity: 1 })
     .set(overlayPath, {
-      attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
+      attr: { d: 'M 0 0 V 100 Q 50 100 100 100 V 0 z' }
     })
     .to(overlayPath, {
       duration: 0.3,
       ease: 'power2.in',
-      attr: { d: 'M 0 100 V 50 Q 50 100 100 50 V 100 z' }
+      attr: { d: 'M 0 0 V 50 Q 50 0 100 50 V 0 z' }
     })
     .to(overlayPath, {
       duration: 0.8,
       ease: 'power4',
-      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
+      attr: { d: 'M 0 0 V 0 Q 50 0 100 0 V 0 z' }
     })
     .set(overlay, { autoAlpha: 0 })
   },
@@ -61,7 +77,7 @@ const transitionSetup = {
         .to(el, { duration: 0.6, autoAlpha: 0 })
     }
 
-    // Cover: overlay path grows to cover the old page
+    // closeMenu: cover from the top, then reveal toward the bottom.
     gsap.timeline({ onComplete: done })
     .set(overlay, { autoAlpha: 1 })
     .set(overlayPath, {
@@ -77,10 +93,22 @@ const transitionSetup = {
       ease: 'power2',
       attr: { d: 'M 0 0 V 100 Q 50 100 100 100 V 0 z' },
     })
-    .to(el, {
+    // Hide the leaving page while it is fully covered.
+    .set(el, { opacity: 0 })
+    .set(overlayPath, {
+      attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
+    })
+    .to(overlayPath, {
       duration: 0.3,
-      opacity: 0,
-    }, 0)
+      ease: 'power2.in',
+      attr: { d: 'M 0 100 V 50 Q 50 100 100 50 V 100 z' }
+    })
+    .to(overlayPath, {
+      duration: 0.8,
+      ease: 'power4',
+      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
+    })
+    .set(overlay, { autoAlpha: 0 })
   },
 };
 
