@@ -85,7 +85,10 @@ onUnmounted(() => {
     class="work"
   >
     <div class="work__inner">
-      <h3 class="title-md is-bold text-split">WORK</h3>
+      <h2 class="title-md is-bold text-split">
+        <span class="title-sm">SELECTED</span>
+        WORK
+      </h2>
       <div class="work-items">
         <article
           v-for="projectItem in projectsList"
@@ -109,6 +112,17 @@ onUnmounted(() => {
     height: 120svh;
     color: $black;
     padding: 10vh 0;
+
+    &__inner {
+      padding: 0 2rem;
+      h2 {
+        span {
+          display: block;
+          font-size: 2svw;
+          line-height: 1;
+        }
+      }
+    }
 
     .work-items {
       max-width: 90vw;

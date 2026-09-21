@@ -3,14 +3,14 @@
 		"__TYPE__": "SharedSliceContent",
 		"variation": "default",
 		"primary": {
-			"section_title": {
-				"__TYPE__": "FieldContent",
-				"value": "equally",
-				"type": "Text"
-			},
 			"tidal_key": {
 				"__TYPE__": "FieldContent",
 				"value": "size",
+				"type": "Text"
+			},
+			"section_title": {
+				"__TYPE__": "FieldContent",
+				"value": "calm",
 				"type": "Text"
 			}
 		},
