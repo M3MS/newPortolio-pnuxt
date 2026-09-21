@@ -69,6 +69,32 @@ This project includes an application called Slice Machine, which generates model
 
 If you change or add to your Custom Types, you'll need to update your route handling to match. To learn how to do that, read [Define Paths in Nuxt](https://prismic.io/docs/technologies/nuxt-define-routes).
 
+## TIDAL playlist cards
+
+The Playlists slice displays your six most recently updated **public** playlists, ordered by TIDAL's `lastModifiedAt`. Each card opens TIDAL's official in-page preview player. Only the selected player is loaded, and switching or closing it stops the previous player.
+
+### One-time account connection
+
+Listing your own playlists requires an owner-authorized token. Visitors do not need to log in.
+
+1. Create `.env` from `.env.example` and set your TIDAL app's `NUXT_TIDAL_CLIENT_ID`. If `.env` already exists, keep its existing values.
+2. In the [TIDAL developer dashboard](https://developer.tidal.com/dashboard), register `http://localhost:8787/callback` as an allowed redirect URI and enable the `playlists.read` scope.
+3. Run `npm run tidal:connect`, open the URL printed in the terminal, and authorize your playlist-owner account. The command uses PKCE and saves `NUXT_TIDAL_REFRESH_TOKEN` to your ignored `.env` file without printing it.
+4. Restart Nuxt. Optionally set `NUXT_TIDAL_COUNTRY_CODE` to your two-letter catalog country (default `US`).
+
+Your artist ID (`58711951`) is different from a user ID. The endpoint uses `filter[owners.id]=me` with your owner token so it retrieves the correct account's playlists. Private and unlisted playlists are excluded before selecting six. TIDAL controls API page size; only the newest-first pages needed to obtain six public playlists are requested.
+
+### Cache and deployment
+
+- `/api/tidal/playlists` caches the six cards for **604,800 seconds (seven days)**. Refresh happens on the first request after expiry, with the previous result served while it refreshes. Failed refreshes preserve the last successful result.
+- The `tidal` Nitro storage mount persists metadata and rotated refresh tokens under `.cache/tidal`. Keep this directory on persistent disk across restarts and deployments. Do not serve or commit it.
+- On serverless or multi-instance hosting, replace this mount in `nuxt.config.ts` with a persistent shared Nitro storage driver (such as Redis) so all instances share the weekly cache and current refresh token.
+- Set `NUXT_TIDAL_CLIENT_ID`, `NUXT_TIDAL_REFRESH_TOKEN`, and optionally `NUXT_TIDAL_COUNTRY_CODE` in your hosting environment. Production Nuxt does not automatically read `.env`.
+- Deploy with a Nuxt server (`npm run build`); a purely static `npm run generate` deployment cannot refresh this API weekly.
+- The weekly cache applies to playlist metadata. TIDAL's player still requests playback data when a visitor presses Play. Catalog tracks have 30-second previews; your Upload tracks may support full playback through TIDAL.
+
+Run `npm run test:tidal` (Node 22.6+) to check ordering, pagination, public-only filtering, and upstream error handling.
+
 ## Documentation
 
 For the official Prismic documentation, see [Prismic's guide for Nuxt](prismic-docs) or the [technical references for the installed Prismic packages](https://prismic.io/docs/technologies/technical-references).

@@ -12,7 +12,9 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "slicemachine": "start-slicemachine",
-    "lint": "eslint ."
+    "lint": "eslint .",
+    "tidal:connect": "node --env-file=.env scripts/tidal-connect.mjs",
+    "test:tidal": "node --experimental-strip-types --test tests/tidal.test.ts"
   },
   "devDependencies": {
     "@nuxt/eslint": "^0.7.5",

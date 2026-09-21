@@ -39,6 +39,9 @@
             },
             "rich_text": {
               "type": "SharedSlice"
+            },
+            "playlists": {
+              "type": "SharedSlice"
             }
           }
         },

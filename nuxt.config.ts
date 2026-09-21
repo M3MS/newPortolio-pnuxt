@@ -17,6 +17,23 @@ export default defineNuxtConfig({
 
   css: ['~/assets/scss/main.scss'],
 
+  runtimeConfig: {
+    tidal: {
+      clientId: '',
+      refreshToken: '',
+      countryCode: 'US',
+    },
+  },
+
+  nitro: {
+    storage: {
+      tidal: {
+        driver: 'fs',
+        base: './.cache/tidal',
+      },
+    },
+  },
+
   vite: {
     css: {
       preprocessorOptions: {

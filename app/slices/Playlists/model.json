@@ -13,11 +13,11 @@
       "name": "Default",
       "primary": {
         "section_title": {
-          "type": "Text",
           "config": {
             "label": "Section Title",
             "placeholder": "For your ears"
-          }
+          },
+          "type": "Text"
         },
         "tidal_key": {
           "config": {
