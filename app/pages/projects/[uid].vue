@@ -213,7 +213,6 @@ onBeforeUnmount(() => {
                   @load="refreshScroll"
                 />
                 <video-player ref="player" class="video-player" v-if="'video_link' in slice.primary && slice.primary.video_link">
-                  
                     <video
                       autoplay 
                       muted
@@ -225,7 +224,6 @@ onBeforeUnmount(() => {
                       loop="true"
                     >
                     </video>
-                  
                 </video-player>
               </div>
               <figcaption class="project-gallery__caption">
@@ -376,11 +374,11 @@ onBeforeUnmount(() => {
   }
 
   &__tag {
-    padding: 0.7rem 1.2rem;
+    padding: 0.8rem 1.2rem 0.6rem;
     border: 1px solid rgba($red, 0.5);
     border-radius: 2rem;
-    font-size: 1.2rem;
-    line-height: 1.3;
+    font-size: 1.3rem;
+    line-height: 1;
   }
 
   &__navigation {
