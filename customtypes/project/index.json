@@ -1,6 +1,9 @@
 {
   "format": "page",
   "id": "project",
+  "label": "Case Studies",
+  "repeatable": true,
+  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -43,6 +46,8 @@
         "type": "Text"
       },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "pif_paf": {
@@ -52,9 +57,7 @@
               "type": "SharedSlice"
             }
           }
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -84,8 +87,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Case Studies",
-  "repeatable": true,
-  "status": true
+  }
 }

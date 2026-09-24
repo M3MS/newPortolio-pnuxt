@@ -3,6 +3,8 @@ import type { VueLenis } from "lenis/vue";
 import { Scene } from "~/scenes/BlobSceneClass";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import type { VideoPlayerElement } from '@videojs/html/video';
+import '@videojs/html/video/minimal-skin';
 
 defineOptions({ inheritAttrs: false });
 
@@ -30,6 +32,8 @@ const nextProject = computed(() => {
   const index = items.findIndex((project) => project.id === page.value?.id);
   return items.length > 1 && index !== -1 ? items[(index + 1) % items.length] : null;
 });
+
+const player = ref<VideoPlayerElement | null>(null);
 
 useSeoMeta({
   title: () => page.value?.data.meta_title,
@@ -134,7 +138,7 @@ onBeforeUnmount(() => {
               <h2 class="project__label">Details</h2>
               <dl class="project__facts">
                 <div class="project__fact">
-                  <dt class="project__term">Client</dt>
+                  <dt class="project__term">Company</dt>
                   <dd class="project__value">{{ projectName }}</dd>
                 </div>
                 <div v-if="technologies.length" class="project__fact project__fact--stack">
@@ -208,16 +212,21 @@ onBeforeUnmount(() => {
                   loading="lazy"
                   @load="refreshScroll"
                 />
-                <video
-                  v-if="'video_link' in slice.primary && slice.primary.video_link"
-                  :src="slice.primary.video_link"
-                  :aria-label="`${projectName} — website walkthrough`"
-                  class="project-gallery__video"
-                  controls
-                  playsinline
-                  preload="metadata"
-                  @loadedmetadata="refreshScroll"
-                />
+                <video-player ref="player" class="video-player" v-if="'video_link' in slice.primary && slice.primary.video_link">
+                  
+                    <video
+                      autoplay 
+                      muted
+                      playsinline
+                      :src="slice.primary.video_link"
+                      class="project-gallery__video video-js"
+                      preload="metadata"
+                      @loadedmetadata="refreshScroll"
+                      loop="true"
+                    >
+                    </video>
+                  
+                </video-player>
               </div>
               <figcaption class="project-gallery__caption">
                 <span class="project-gallery__number">{{ String(index + 2).padStart(2, '0') }}</span>
@@ -516,6 +525,12 @@ onBeforeUnmount(() => {
     display: block;
     width: 100%;
     height: auto;
+  }
+
+  &__video {
+    video {
+      height: 50vh;
+    }
   }
 
   &__caption {
