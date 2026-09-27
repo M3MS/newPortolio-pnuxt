@@ -22,18 +22,21 @@ defineProps<{
   top: 0;
   right: 0;
   z-index: 10;
-  padding: 1rem;
+  padding: 2rem 0.5rem;
   writing-mode: vertical-lr;
   mix-blend-mode: difference;
 
-  @media (min-width: 768px) {
-      padding: 3rem;
-  }
-
-
 	a {
 	    display: inline-block;
+      font-size: 1.4rem;
 	}
 
+  @media (min-width: 768px) {
+      padding: 2rem;
+
+      a {
+        font-size: 1.6rem;
+      }
+  }
 }
 </style>

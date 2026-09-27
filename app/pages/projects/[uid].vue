@@ -261,342 +261,342 @@ onBeforeUnmount(() => {
 </template>
 
 <style lang="scss" scoped>
-.project {
-  --project-gutter: clamp(2.4rem, 4vw, 7.2rem);
-  color: $red;
-  padding-right: 4rem;
-
-  &__layout {
-    display: grid;
-    align-items: start;
-  }
-
-  &__info {
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    gap: 4.8rem;
-    padding: 3.2rem var(--project-gutter) 4.8rem;
-  }
-
-  &__back {
-    display: inline-flex;
-    align-items: center;
-    gap: 1.2rem;
-    min-height: 4.4rem;
+  .project {
+    --project-gutter: clamp(2.4rem, 4vw, 7.2rem);
     color: $red;
-    font-size: 1.4rem;
+    padding-right: 4rem;
 
-    &:hover { color: $green; }
-  }
-
-  &__masthead {
-    position: relative;
-    isolation: isolate;
-    padding-top: 3.2rem;
-  }
-
-  &__eyebrow,
-  &__label {
-    font-size: 1.1rem;
-    line-height: 1.5;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-  }
-
-  &__eyebrow {
-    color: $green;
-    margin-bottom: 2.4rem;
-  }
-
-  &__title {
-    position: relative;
-    font-size: clamp(5.6rem, 16vw, 14rem);
-    font-weight: bold;
-    line-height: 0.9;
-    letter-spacing: -0.055em;
-    text-transform: uppercase;
-    overflow-wrap: anywhere;
-    -webkit-text-stroke: 1.5px $red;
-    color: transparent;
-  }
-
-  &__blob {
-    position: absolute;
-    z-index: -1;
-    inset: 0 -1rem -3rem 25%;
-    opacity: 0.45;
-    pointer-events: none;
-    overflow: hidden;
-    border-radius: 50%;
-  }
-
-  &__details {
-    display: grid;
-    gap: 3.6rem;
-  }
-
-  &__row {
-    display: grid;
-    gap: 1.6rem;
-    min-width: 0;
-  }
-
-  &__label { padding-top: 0.4rem; }
-
-  &__description {
-    font-size: clamp(1.6rem, 1.35vw, 1.9rem);
-    line-height: 1.6;
-  }
-
-  &__facts { min-width: 0; }
-
-  &__fact {
-    display: grid;
-    grid-template-columns: 1fr 1.5fr;
-    gap: 1.6rem;
-    padding: 1.6rem 0;
-    border-top: 1px solid rgba($red, 0.35);
-
-    &--stack { grid-template-columns: 1fr; }
-  }
-
-  &__term { font-size: 1.3rem; }
-  &__value { overflow-wrap: anywhere; }
-
-  &__tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.8rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-
-  &__tag {
-    padding: 0.8rem 1.2rem 0.6rem;
-    border: 1px solid rgba($red, 0.5);
-    border-radius: 2rem;
-    font-size: 1.3rem;
-    line-height: 1;
-  }
-
-  &__navigation {
-    padding-top: 2.4rem;
-    border-top: 1px solid rgba($red, 0.35);
-  }
-
-  &__next {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.6rem;
-    color: $red;
-    font-size: clamp(2.8rem, 3vw, 4.8rem);
-    font-weight: bold;
-    line-height: 1.1;
-    overflow-wrap: anywhere;
-
-    &:hover { color: $green; }
-    &:hover .project__arrow { transform: translate(0.4rem, -0.4rem); }
-  }
-
-  &__arrow { transition: transform 0.25s ease; }
-
-  :deep(a:focus-visible) {
-    outline: 2px solid $green;
-    outline-offset: 6px;
-  }
-
-  :deep(.project__description p + p),
-  :deep(.project-gallery__copy p + p) { margin-top: 1.6rem; }
-
-  :deep(.project__description a),
-  :deep(.project-gallery__copy a) {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 0.3em;
-  }
-
-  @media (min-width: 768px) {
-    padding-right: 8rem;
-  }
-
-  @media (min-width: 1100px) {
-    &__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+    &__layout {
+      display: grid;
+      align-items: start;
+    }
 
     &__info {
-      position: sticky;
-      top: 0;
-      height: 100vh;
-      gap: clamp(2.4rem, 4vh, 6rem);
-      padding-top: 3.2rem;
-      padding-bottom: 3.2rem;
-    }
-
-    &__heading,
-    &__navigation { flex-shrink: 0; }
-
-    &__title { font-size: clamp(6.4rem, 8.5vw, 16rem); }
-    &__details {
-      min-height: 0;
-      margin-top: auto;
-      overflow-y: auto;
-      scrollbar-width: thin;
-      scrollbar-color: rgba($red, 0.5) transparent;
-    }
-    &__row { grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr); }
-  }
-}
-
-.project-gallery {
-  display: grid;
-  gap: 3.2rem;
-  min-width: 0;
-  padding: 0 var(--project-gutter) 4.8rem;
-
-  &__cover {
-    overflow: hidden;
-    border: 1px solid $red;
-    border-radius: 2.1rem;
-  }
-
-  &__toolbar,
-  &__cover-caption {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.6rem;
-    padding: 1.6rem;
-    font-size: 1rem;
-    letter-spacing: 0.05em;
-    text-transform: uppercase;
-  }
-
-  &__dots {
-    display: flex;
-    gap: 0.4rem;
-
-    i {
-      width: 0.5rem;
-      height: 0.5rem;
-      border: 1px solid $red;
-      border-radius: 50%;
-
-      &:first-child { background: $green; border-color: $green; }
-    }
-  }
-
-  &__stage {
-    display: flex;
-    align-items: center;
-    min-height: 38rem;
-    padding: clamp(2rem, 3vw, 5rem);
-    background: $red;
-    background-image: radial-gradient(ellipse at 85% 15%, rgba($white, 0.4), transparent 65%);
-  }
-
-  &__hero {
-    width: 100%;
-    height: auto;
-    border-radius: 0.6rem;
-    box-shadow: 0 2rem 5rem rgba($dark-blue, 0.25);
-  }
-
-  &__entry {
-    min-width: 0;
-
-    &--text {
-      padding: 3.2rem;
-      border-block: 1px solid rgba($red, 0.35);
-    }
-  }
-
-  &__media {
-    overflow: hidden;
-    border-radius: 1.6rem;
-    background: rgba($red, 0.05);
-  }
-
-  &__image,
-  &__video {
-    display: block;
-    width: 100%;
-    height: auto;
-  }
-
-  &__video {
-    video {
-      height: 50vh;
-    }
-  }
-
-  &__caption {
-    display: grid;
-    grid-template-columns: 3rem minmax(0, 1fr);
-    gap: 1.6rem;
-    padding: 2rem 0 0.8rem;
-  }
-
-  &__number {
-    padding-top: 0.3rem;
-    color: $green;
-    font-size: 1.1rem;
-  }
-
-  &__copy {
-    font-size: 1.5rem;
-    line-height: 1.6;
-    overflow-wrap: anywhere;
-  }
-
-  &__next {
-    display: grid;
-    gap: 4.8rem;
-    padding: 3.2rem;
-    border: 1px solid $red;
-    border-radius: 2.1rem;
-    color: $red;
-    transition: background-color 0.25s ease, color 0.25s ease;
-
-    &:hover { background-color: $red; color: $dark-blue; }
-  }
-
-  &__next-title {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 1.6rem;
-    font-size: clamp(3.2rem, 5vw, 7.2rem);
-    font-weight: bold;
-    line-height: 1;
-    overflow-wrap: anywhere;
-  }
-
-  @media (min-width: 1100px) {
-    gap: 4rem;
-    padding: 0 0 3.2rem;
-
-    &__cover {
+      min-width: 0;
       display: flex;
       flex-direction: column;
-      height: 100vh;
+      gap: 4.8rem;
+      padding: 3.2rem var(--project-gutter) 4.8rem;
+    }
+
+    &__back {
+      display: inline-flex;
+      align-items: center;
+      gap: 1.2rem;
+      min-height: 4.4rem;
+      color: $red;
+      font-size: 1.4rem;
+
+      &:hover { color: $green; }
+    }
+
+    &__masthead {
+      position: relative;
+      isolation: isolate;
+      padding-top: 3.2rem;
+    }
+
+    &__eyebrow,
+    &__label {
+      font-size: 1.1rem;
+      line-height: 1.5;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    &__eyebrow {
+      color: $green;
+      margin-bottom: 2.4rem;
+    }
+
+    &__title {
+      position: relative;
+      font-size: clamp(5.6rem, 16vw, 14rem);
+      font-weight: bold;
+      line-height: 0.9;
+      letter-spacing: -0.055em;
+      text-transform: uppercase;
+      overflow-wrap: anywhere;
+      -webkit-text-stroke: 1.5px $red;
+      color: transparent;
+    }
+
+    &__blob {
+      position: absolute;
+      z-index: -1;
+      inset: 0 -1rem -3rem 25%;
+      opacity: 0.45;
+      pointer-events: none;
+      overflow: hidden;
+      border-radius: 50%;
+    }
+
+    &__details {
+      display: grid;
+      gap: 3.6rem;
+    }
+
+    &__row {
+      display: grid;
+      gap: 1.6rem;
+      min-width: 0;
+    }
+
+    &__label { padding-top: 0.4rem; }
+
+    &__description {
+      font-size: clamp(1.6rem, 1.35vw, 1.9rem);
+      line-height: 1.6;
+    }
+
+    &__facts { min-width: 0; }
+
+    &__fact {
+      display: grid;
+      grid-template-columns: 1fr 1.5fr;
+      gap: 1.6rem;
+      padding: 1.6rem 0;
+      border-top: 1px solid rgba($red, 0.35);
+
+      &--stack { grid-template-columns: 1fr; }
+    }
+
+    &__term { font-size: 1.3rem; }
+    &__value { overflow-wrap: anywhere; }
+
+    &__tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    &__tag {
+      padding: 0.8rem 1.2rem 0.6rem;
+      border: 1px solid rgba($red, 0.5);
+      border-radius: 2rem;
+      font-size: 1.3rem;
+      line-height: 1;
+    }
+
+    &__navigation {
+      padding-top: 2.4rem;
+      border-top: 1px solid rgba($red, 0.35);
+    }
+
+    &__next {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.6rem;
+      color: $red;
+      font-size: clamp(2.8rem, 3vw, 4.8rem);
+      font-weight: bold;
+      line-height: 1.1;
+      overflow-wrap: anywhere;
+
+      &:hover { color: $green; }
+      &:hover .project__arrow { transform: translate(0.4rem, -0.4rem); }
+    }
+
+    &__arrow { transition: transform 0.25s ease; }
+
+    :deep(a:focus-visible) {
+      outline: 2px solid $green;
+      outline-offset: 6px;
+    }
+
+    :deep(.project__description p + p),
+    :deep(.project-gallery__copy p + p) { margin-top: 1.6rem; }
+
+    :deep(.project__description a),
+    :deep(.project-gallery__copy a) {
+      color: inherit;
+      text-decoration: underline;
+      text-underline-offset: 0.3em;
+    }
+
+    @media (min-width: 768px) {
+      padding-right: 8rem;
+    }
+
+    @media (min-width: 1100px) {
+      &__layout { grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); }
+
+      &__info {
+        position: sticky;
+        top: 0;
+        height: 100vh;
+        gap: clamp(2.4rem, 4vh, 6rem);
+        padding-top: 3.2rem;
+        padding-bottom: 3.2rem;
+      }
+
+      &__heading,
+      &__navigation { flex-shrink: 0; }
+
+      &__title { font-size: clamp(6.4rem, 8.5vw, 16rem); }
+      &__details {
+        min-height: 0;
+        margin-top: auto;
+        overflow-y: auto;
+        scrollbar-width: thin;
+        scrollbar-color: rgba($red, 0.5) transparent;
+      }
+      &__row { grid-template-columns: minmax(7rem, 0.35fr) minmax(0, 1fr); }
+    }
+  }
+
+  .project-gallery {
+    display: grid;
+    gap: 3.2rem;
+    min-width: 0;
+    padding: 0 var(--project-gutter) 4.8rem;
+
+    &__cover {
+      overflow: hidden;
+      border: 1px solid $red;
+      border-radius: 2.1rem;
     }
 
     &__toolbar,
-    &__cover-caption { flex-shrink: 0; }
+    &__cover-caption {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.6rem;
+      padding: 1.6rem;
+      font-size: 1rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+    }
+
+    &__dots {
+      display: flex;
+      gap: 0.4rem;
+
+      i {
+        width: 0.5rem;
+        height: 0.5rem;
+        border: 1px solid $red;
+        border-radius: 50%;
+
+        &:first-child { background: $green; border-color: $green; }
+      }
+    }
 
     &__stage {
-      flex: 1;
-      min-height: 0;
-      justify-content: center;
+      display: flex;
+      align-items: center;
+      min-height: 38rem;
+      padding: clamp(2rem, 3vw, 5rem);
+      background: $red;
+      background-image: radial-gradient(ellipse at 85% 15%, rgba($white, 0.4), transparent 65%);
     }
 
     &__hero {
-      width: auto;
-      max-height: 100%;
-      object-fit: contain;
+      width: 100%;
+      height: auto;
+      border-radius: 0.6rem;
+      box-shadow: 0 2rem 5rem rgba($dark-blue, 0.25);
+    }
+
+    &__entry {
+      min-width: 0;
+
+      &--text {
+        padding: 3.2rem;
+        border-block: 1px solid rgba($red, 0.35);
+      }
+    }
+
+    &__media {
+      overflow: hidden;
+      border-radius: 1.6rem;
+      background: rgba($red, 0.05);
+    }
+
+    &__image,
+    &__video {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    &__video {
+      video {
+        height: 50vh;
+      }
+    }
+
+    &__caption {
+      display: grid;
+      grid-template-columns: 3rem minmax(0, 1fr);
+      gap: 1.6rem;
+      padding: 2rem 0 0.8rem;
+    }
+
+    &__number {
+      padding-top: 0.3rem;
+      color: $green;
+      font-size: 1.1rem;
+    }
+
+    &__copy {
+      font-size: 1.5rem;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+    }
+
+    &__next {
+      display: grid;
+      gap: 4.8rem;
+      padding: 3.2rem;
+      border: 1px solid $red;
+      border-radius: 2.1rem;
+      color: $red;
+      transition: background-color 0.25s ease, color 0.25s ease;
+
+      &:hover { background-color: $red; color: $dark-blue; }
+    }
+
+    &__next-title {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.6rem;
+      font-size: clamp(3.2rem, 5vw, 7.2rem);
+      font-weight: bold;
+      line-height: 1;
+      overflow-wrap: anywhere;
+    }
+
+    @media (min-width: 1100px) {
+      gap: 4rem;
+      padding: 0 0 3.2rem;
+
+      &__cover {
+        display: flex;
+        flex-direction: column;
+        height: 100vh;
+      }
+
+      &__toolbar,
+      &__cover-caption { flex-shrink: 0; }
+
+      &__stage {
+        flex: 1;
+        min-height: 0;
+        justify-content: center;
+      }
+
+      &__hero {
+        width: auto;
+        max-height: 100%;
+        object-fit: contain;
+      }
     }
   }
-}
 </style>

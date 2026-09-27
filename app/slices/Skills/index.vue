@@ -101,3 +101,49 @@ onUnmounted(() => {
     </div>
   </section>
 </template>
+
+<style lang="scss" scoped>
+.techno {
+    h3 {
+      display: block;
+      color: #191919;
+      padding-top: 35vh;
+    }
+
+    .marquee {
+      padding-top: 10vh;
+      padding-bottom: 35vh;
+      position: relative;
+      overflow-x: hidden;
+
+      &__inner {
+        width: fit-content;
+        display: flex;
+        position: relative;
+        white-space: nowrap;
+
+        span {
+          font-size: 6vh;
+          font-weight: bold;
+          line-height: 1;
+          padding: 0 5vw;
+          text-transform: uppercase;
+          margin-right: 5vw;
+          color: #010101;
+
+          @media (min-width: 768px) {
+            font-size: 10vw;
+          }
+        }
+      }
+
+      .first {
+        transform: translateX(50%);
+      }
+
+      .second {
+        transform: translateX(-80%);
+      }
+    }
+  }
+</style>
