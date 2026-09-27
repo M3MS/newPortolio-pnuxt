@@ -35,8 +35,7 @@ onMounted(() => {
       ease: "power3.inOut",
       scrollTrigger: {
         trigger: workSection,
-        start: "top 50%",
-        markers: true,
+        start: "top 50%"
       },
     });
 
@@ -83,6 +82,7 @@ onUnmounted(() => {
     :data-slice-type="slice.slice_type"
     :data-slice-variation="slice.variation"
     class="work"
+    id="work"
   >
     <div class="work__inner">
       <h2 class="title-md is-bold text-split">
@@ -109,28 +109,39 @@ onUnmounted(() => {
 <style scoped lang="scss">
 
 .work {
-    height: 120svh;
+    min-height: 100svh;
     color: $black;
     padding: 10vh 0;
+
+    @media (min-width: 768px) {
+      position: relative;
+      min-height: 100svh;
+    }
 
     &__inner {
       padding: 0 2rem;
       h2 {
         span {
           display: block;
-          font-size: 2svw;
+          font-size: 2rem;
           line-height: 1;
+        }
+
+        @media (min-width: 768px) {
+          span {
+            font-size: 2svw;
+          }
         }
       }
     }
 
     .work-items {
-      max-width: 90vw;
-      margin: 6rem auto;
+      margin: 4rem auto;
 
       @media (min-width: 768px) {
         max-width: 60vw;
         position: relative;
+        margin: 6rem auto;
       }
 
       &__item {
@@ -143,18 +154,27 @@ onUnmounted(() => {
           display: flex;
           justify-content: space-between;
           align-items: center;
-          padding: 5rem 0 2rem 1rem;
+          padding: 5rem 0 1rem 1rem;
           overflow: hidden;
           color: $black;
+
+          @media (min-width: 768px) {
+            padding: 5rem 0 2rem 1rem;
+          }
 
           h4 {
             font-size: 6vw;
             line-height: 0.9;
             transition: all 0.3s ease-in-out;
+            margin-bottom: 0.5rem;
 
             @media (min-width: 768px) {
               font-size: 2.5vw;
             }
+          }
+
+          span {
+            font-size: 1.4rem;
           }
 
           &:hover {

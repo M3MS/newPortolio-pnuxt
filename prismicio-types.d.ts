@@ -162,6 +162,17 @@ interface ProjectDocumentData {
   hero: prismic.ImageField<never>;
 
   /**
+   * Project field in *Case Studies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.project
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  project: prismic.KeyTextField;
+
+  /**
    * Company field in *Case Studies*
    *
    * - **Field Type**: Rich Text
@@ -171,6 +182,17 @@ interface ProjectDocumentData {
    * - **Documentation**: https://prismic.io/docs/fields/rich-text
    */
   company: prismic.RichTextField;
+
+  /**
+   * Role field in *Case Studies*
+   *
+   * - **Field Type**: Text
+   * - **Placeholder**: *None*
+   * - **API ID Path**: project.role
+   * - **Tab**: Main
+   * - **Documentation**: https://prismic.io/docs/fields/text
+   */
+  role: prismic.KeyTextField;
 
   /**
    * Description field in *Case Studies*

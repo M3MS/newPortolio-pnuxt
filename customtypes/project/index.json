@@ -1,6 +1,9 @@
 {
   "format": "page",
   "id": "project",
+  "label": "Case Studies",
+  "repeatable": true,
+  "status": true,
   "json": {
     "Main": {
       "uid": {
@@ -17,6 +20,13 @@
         },
         "type": "Image"
       },
+      "project": {
+        "type": "Text",
+        "config": {
+          "label": "Project",
+          "placeholder": ""
+        }
+      },
       "company": {
         "config": {
           "allowTargetBlank": false,
@@ -25,6 +35,13 @@
           "single": "heading1,heading2,heading3,heading4,paragraph"
         },
         "type": "StructuredText"
+      },
+      "role": {
+        "type": "Text",
+        "config": {
+          "label": "Role",
+          "placeholder": ""
+        }
       },
       "description": {
         "config": {
@@ -43,6 +60,8 @@
         "type": "Text"
       },
       "slices": {
+        "type": "Slices",
+        "fieldset": "Slice Zone",
         "config": {
           "choices": {
             "pif_paf": {
@@ -52,9 +71,7 @@
               "type": "SharedSlice"
             }
           }
-        },
-        "fieldset": "Slice Zone",
-        "type": "Slices"
+        }
       }
     },
     "SEO & Metadata": {
@@ -84,8 +101,5 @@
         "type": "Image"
       }
     }
-  },
-  "label": "Case Studies",
-  "repeatable": true,
-  "status": true
+  }
 }

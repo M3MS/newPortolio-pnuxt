@@ -1,4 +1,5 @@
 import { repositoryName, apiEndpoint } from './slicemachine.config.json';
+const videoJsElements = new Set(['video-player', 'video-skin', 'mux-video']);
 
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
@@ -25,6 +26,12 @@ export default defineNuxtConfig({
         }
       }
     }
+  },
+
+  vue: {
+    compilerOptions: {
+      isCustomElement: (tag) => videoJsElements.has(tag),
+    },
   },
 
   app: {
