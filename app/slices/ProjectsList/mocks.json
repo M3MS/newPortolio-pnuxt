@@ -8,12 +8,13 @@
 				"value": [
 					{
 						"__TYPE__": "GroupItemContent",
+						"key": "153ec685-8e0c-46b8-a6c0-2e59691d7c76",
 						"value": [
 							[
 								"project",
 								{
+									"key": "a876acd7-1aca-40dd-9b8e-339303fb6ba7",
 									"__TYPE__": "LinkContent",
-									"key": "ac5ffc8c-4d54-4ec1-a50a-a017f63f1983",
 									"value": {
 										"__TYPE__": "DocumentLink",
 										"id": "mock_document_id"
@@ -25,6 +26,12 @@
 				]
 			}
 		},
-		"items": []
+		"items": [
+			{
+				"__TYPE__": "GroupItemContent",
+				"key": "303316a0-f277-4421-9a5a-24b8e40ce4e8",
+				"value": []
+			}
+		]
 	}
 ]

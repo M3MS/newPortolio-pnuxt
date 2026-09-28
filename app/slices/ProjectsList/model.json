@@ -17,10 +17,17 @@
             "fields": {
               "project": {
                 "config": {
+                  "label": "Case Study",
                   "customtypes": [
-                    "project"
+                    {
+                      "id": "project",
+                      "fields": [
+                        "case_study",
+                        "company",
+                        "tech_stack"
+                      ]
+                    }
                   ],
-                  "label": "Project",
                   "repeat": false,
                   "select": "document"
                 },
