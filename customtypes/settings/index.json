@@ -1,6 +1,9 @@
 {
   "format": "custom",
   "id": "settings",
+  "label": "Settings",
+  "repeatable": false,
+  "status": true,
   "json": {
     "Main": {
       "site_title": {
@@ -40,8 +43,5 @@
         "type": "Link"
       }
     }
-  },
-  "label": "Settings",
-  "repeatable": false,
-  "status": true
+  }
 }

@@ -23,7 +23,8 @@ const [{ data: page }, { data: projects }] = await Promise.all([
   ),
 ]);
 
-const projectName = computed(() => prismic.asText(page.value?.data.company));
+const projectName = computed(() => prismic.asText(page.value?.data.project));
+const projectRole = computed(() => prismic.asText(page.value?.data.role));
 const technologies = computed(() =>
   (page.value?.data.tech_stack ?? "").split(/\s+-\s+|,/).map((item) => item.trim()).filter(Boolean),
 );
@@ -141,6 +142,10 @@ onBeforeUnmount(() => {
                   <dt class="project__term">Company</dt>
                   <dd class="project__value">{{ projectName }}</dd>
                 </div>
+                <div class="project__fact">
+                  <dt class="project__term">Role</dt>
+                  <dd class="project__value">{{ projectRole }}</dd>
+                </div>
                 <div v-if="technologies.length" class="project__fact project__fact--stack">
                   <dt class="project__term">Built with</dt>
                   <dd class="project__value">
@@ -161,7 +166,7 @@ onBeforeUnmount(() => {
               :to="nextProject ? `/projects/${nextProject.uid}` : '/'"
               class="project__next"
             >
-              <span>{{ nextProject ? prismic.asText(nextProject.data.company) : "All projects" }}</span>
+              <span>{{ nextProject ? prismic.asText(nextProject.data.project) : "All projects" }}</span>
               <span class="project__arrow" aria-hidden="true">↗</span>
             </NuxtLink>
           </div>
@@ -250,7 +255,7 @@ onBeforeUnmount(() => {
           >
             <span class="project__label">{{ nextProject ? "Next project" : "Back to the archive" }}</span>
             <span class="project-gallery__next-title">
-              {{ nextProject ? prismic.asText(nextProject.data.company) : "All projects" }}
+              {{ nextProject ? prismic.asText(nextProject.data.project) : "All projects" }}
               <span aria-hidden="true">↗</span>
             </span>
           </NuxtLink>

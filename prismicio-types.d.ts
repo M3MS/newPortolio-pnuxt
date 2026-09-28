@@ -166,11 +166,11 @@ interface ProjectDocumentData {
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.project
+   * - **API ID Path**: project.case_study
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  project: prismic.KeyTextField;
+  case_study: prismic.KeyTextField;
 
   /**
    * Company field in *Case Studies*

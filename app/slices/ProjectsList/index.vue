@@ -95,8 +95,9 @@ onUnmounted(() => {
           :key="projectItem.id"
           class="work-items__item"
         >
+        <pre>{{ JSON.stringify(projectItem, null, 2) }}</pre>
           <PrismicLink :document="projectItem">
-            <PrismicText :field="projectItem.data.company" wrapper="h4" class="is-bold" />
+            <PrismicText :field="projectItem.data.case_study" wrapper="h4" class="is-bold" />
             <span>{{ projectItem.data.tech_stack }}</span>
           </PrismicLink>
           <span class="line"></span>
