@@ -10,7 +10,7 @@ const prismic = usePrismic();
 const route = useRoute();
 const { data: page } = await useAsyncData("index", () =>
   prismic.client.getByUID("page", (route.params.uid as string) ?? "home", {
-    fetchLinks: ["project.company", "project.tech_stack"],
+    fetchLinks: ["project.company", "project.tech_stack", "project.case_study"],
   }),
 );
 

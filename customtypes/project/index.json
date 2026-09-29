@@ -20,21 +20,19 @@
         },
         "type": "Image"
       },
-      "project": {
+      "case_study": {
         "type": "Text",
         "config": {
-          "label": "Project",
+          "label": "Case Study",
           "placeholder": ""
         }
       },
       "company": {
+        "type": "Text",
         "config": {
-          "allowTargetBlank": false,
           "label": "Company",
-          "placeholder": "",
-          "single": "heading1,heading2,heading3,heading4,paragraph"
-        },
-        "type": "StructuredText"
+          "placeholder": ""
+        }
       },
       "role": {
         "type": "Text",

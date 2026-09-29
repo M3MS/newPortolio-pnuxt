@@ -96,7 +96,7 @@ onUnmounted(() => {
           class="work-items__item"
         >
           <PrismicLink :document="projectItem">
-            <PrismicText :field="projectItem.data.company" wrapper="h4" class="is-bold" />
+            <h4 v-if="projectItem.data.case_study" class="is-bold">{{ projectItem.data.case_study }}</h4>
             <span>{{ projectItem.data.tech_stack }}</span>
           </PrismicLink>
           <span class="line"></span>
@@ -120,7 +120,15 @@ onUnmounted(() => {
 
     &__inner {
       padding: 0 2rem;
+
       h2 {
+        line-height: 1;
+        
+        .line,
+        .line > div {
+          overflow: hidden;
+        }
+
         span {
           display: block;
           font-size: 2rem;

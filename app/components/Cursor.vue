@@ -121,30 +121,29 @@ onBeforeUnmount(() => {
     </svg>
 </template>
 <style scoped lang="scss">
-
 .cursor {
-	display: none;
+  display: block;
+  position: fixed;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  z-index: 10000;
+  mix-blend-mode: exclusion;
+
+  &__inner {
+    fill: $red;
+    border: 1px solid $red;
+  }
 }
 
-@media (any-pointer:fine) {
-	.cursor {
-        display: block;
-		position: fixed;
-		top: 0;
-		left: 0;
-		pointer-events: none;
-		z-index: 10000;
-		mix-blend-mode: exclusion;
-	}
-
-	.cursor__inner {
-		fill: $red;
-		border: 1px solid $red;
-	}
-
-	.no-js .cursor {
-		display: none;
-	}
-
+.no-js .cursor {
+  display: none;
 }
+
+@media (any-pointer:none) {
+  .cursor {
+    display: none;
+  }
+}
+
 </style>

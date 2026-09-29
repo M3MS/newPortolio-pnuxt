@@ -162,26 +162,26 @@ interface ProjectDocumentData {
   hero: prismic.ImageField<never>;
 
   /**
-   * Project field in *Case Studies*
+   * Case Study field in *Case Studies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*
-   * - **API ID Path**: project.project
+   * - **API ID Path**: project.case_study
    * - **Tab**: Main
    * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  project: prismic.KeyTextField;
+  case_study: prismic.KeyTextField;
 
   /**
    * Company field in *Case Studies*
    *
-   * - **Field Type**: Rich Text
+   * - **Field Type**: Text
    * - **Placeholder**: *None*
    * - **API ID Path**: project.company
    * - **Tab**: Main
-   * - **Documentation**: https://prismic.io/docs/fields/rich-text
+   * - **Documentation**: https://prismic.io/docs/fields/text
    */
-  company: prismic.RichTextField;
+  company: prismic.KeyTextField;
 
   /**
    * Role field in *Case Studies*
@@ -643,14 +643,16 @@ export type PlaylistsSlice = prismic.SharedSlice<
  */
 export interface ProjectsListSliceDefaultPrimaryProjectsItemsItem {
   /**
-   * Project field in *ProjectsList → Default → Primary → Projects Items*
+   * Case Study field in *ProjectsList → Default → Primary → Projects Items*
    *
    * - **Field Type**: Content Relationship
    * - **Placeholder**: *None*
    * - **API ID Path**: projects_list.default.primary.projects_items[].project
    * - **Documentation**: https://prismic.io/docs/fields/content-relationship
    */
-  project: prismic.ContentRelationshipField<"project">;
+  project: ContentRelationshipFieldWithData<
+    [{ id: "project"; fields: ["case_study", "company", "tech_stack"] }]
+  >;
 }
 
 /**
