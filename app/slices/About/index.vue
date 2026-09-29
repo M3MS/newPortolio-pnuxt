@@ -59,13 +59,22 @@ defineProps(
       padding: 2rem;
       margin-bottom: 2rem;
       color: #010101;
-      background: #ffffff;
+      background-color: rgba($white, 0.65);
       border-radius: 2rem;
       font-size: 1.4rem;
+      backdrop-filter: blur(5px);
+      box-shadow: inset 0 0 0.5px 1px hsla(0, 0%,  
+              100%, 0.55),
+              /* shadow ring 👇 */
+              0 0 0 1px hsla(0, 0%, 0%, 0.05),
+              /* multiple soft shadows 👇 */
+              0 0.3px 0.4px hsla(0, 0%, 0%, 0.02),
+              0 0.9px 1.5px hsla(0, 0%, 0%, 0.045),
+              0 3.5px 6px hsla(0, 0%, 0%, 0.1);
 
       @media (min-width: 768px) {
-        max-width: 500px;
-        margin: 2vw 55px 2vw;
+        max-width: 600px;
+        margin: 2vw 35px 2vw;
         padding: 50px;
         font-size: 25px;
       }

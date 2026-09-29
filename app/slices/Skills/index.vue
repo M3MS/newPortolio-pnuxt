@@ -87,7 +87,7 @@ onUnmounted(() => {
         <span>WEBPACK</span>
       </div>
       <div class="marquee__inner first">
-        <span>GULP</span>
+        <span>VITE</span>
         <span>COMPOSER</span>
         <span>PIZZA</span>
         <span>DOCKER</span>
@@ -95,7 +95,7 @@ onUnmounted(() => {
       <div class="marquee__inner second">
         <span>VUE</span>
         <span>LARAVEL</span>
-        <span>SASS</span>
+        <span>REACT</span>
         <span>FIGMA</span>
       </div>
     </div>
@@ -106,13 +106,13 @@ onUnmounted(() => {
 .techno {
     h3 {
       display: block;
-      color: #191919;
-      padding-top: 35vh;
+      color: $dark;
+      padding-top: 35svh;
     }
 
     .marquee {
-      padding-top: 10vh;
-      padding-bottom: 35vh;
+      padding-top: 10svh;
+      padding-bottom: 35svh;
       position: relative;
       overflow-x: hidden;
 
@@ -123,16 +123,16 @@ onUnmounted(() => {
         white-space: nowrap;
 
         span {
-          font-size: 6vh;
+          font-size: 9svh;
           font-weight: bold;
           line-height: 1;
-          padding: 0 5vw;
+          padding: 0 3svw;
           text-transform: uppercase;
-          margin-right: 5vw;
-          color: #010101;
+          margin-right: 3svw;
+          color: $black;
 
           @media (min-width: 768px) {
-            font-size: 10vw;
+            font-size: 9svw;
           }
         }
       }

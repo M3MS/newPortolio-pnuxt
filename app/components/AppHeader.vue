@@ -10,7 +10,7 @@ defineProps<{
 <template>
   <header class="site-header">
     <NuxtLink to="/" class="logo">
-      El Marabti Mehdy - Creative Developer
+      El Marabti Mehdy - Creative & Developer
     </NuxtLink>
   </header>
 </template>

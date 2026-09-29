@@ -7,6 +7,7 @@ export default function textEffect(scope) {
     gsap.utils.toArray(".text-split").forEach((el) => {
       let split = SplitText.create(el, {
         type: "lines, words",
+        mask: "lines",
         linesClass: "line",
         smartWrap: true,
       });
@@ -15,7 +16,7 @@ export default function textEffect(scope) {
       gsap.from(split.words, {
         autoAlpha: 0,
         y: 150,
-        stagger: 0.05,
+        stagger: 0.03,
         ease: "power3.inOut",
         scrollTrigger: {
           trigger: el,

@@ -30,7 +30,7 @@ onMounted(() => {
     const workSection = document.querySelector(".work");
 
     gsap.to(workSection, {
-      backgroundColor: "#ffffff",
+      backgroundColor: "#fffaf7",
       duration: 1.0,
       ease: "power3.inOut",
       scrollTrigger: {

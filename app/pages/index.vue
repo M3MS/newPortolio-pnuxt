@@ -118,6 +118,7 @@ onUnmounted(() => {
       <div id="gl-stuff" ref="blob" />
       <SliceZone
         id="home"
+        class="home"
         wrapper="main"
         :slices="page?.data.slices ?? []"
         :components="components"
