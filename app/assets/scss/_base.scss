@@ -24,6 +24,10 @@ body {
   cursor: crosshair;
 }
 
+a {
+  transition: all 0.3s ease-in-out;
+}
+
 canvas {
   display: block;
 }
