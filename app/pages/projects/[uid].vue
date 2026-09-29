@@ -57,6 +57,7 @@ const lenisOptions = computed(() => ({
     node.classList.contains("project__details") && node.scrollHeight > node.clientHeight,
 }));
 let mediaContext: gsap.MatchMedia | undefined;
+let sceneInstance: any = null;
 
 watchEffect((onCleanup) => {
   const lenis = lenisRef.value?.lenis;
@@ -90,7 +91,7 @@ onMounted(async () => {
     reducedMotion.value = Boolean(context.conditions?.reduce);
     if (reducedMotion.value) return;
 
-    const scene = blob.value ? new Scene({ domElement: blob.value }) : null;
+    sceneInstance = blob.value ? new Scene({ domElement: blob.value }) : null;
     gsap.utils.toArray<HTMLElement>(".project-gallery__entry").forEach((entry) => {
       gsap.from(entry, {
         y: 40,
@@ -101,7 +102,6 @@ onMounted(async () => {
       });
     });
 
-    return () => scene?.cleanup();
   }, projectRef.value);
   refreshScroll();
 });
@@ -110,6 +110,10 @@ onBeforeUnmount(() => {
   mediaContext?.revert();
   removeTransitionHook();
 });
+
+onUnmounted(() => {
+  sceneInstance?.cleanup();
+})
 </script>
 
 <template>

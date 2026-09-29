@@ -20,10 +20,10 @@ useSeoMeta({
 
 <template>
     <div>
+        <Overlay :ref="setOverlayRef" />
         <Cursor />
         <AppHeader :settings="settings" />
         <slot />
         <AppFooter :settings="settings" />
-        <Overlay :ref="setOverlayRef" />
     </div>
 </template>

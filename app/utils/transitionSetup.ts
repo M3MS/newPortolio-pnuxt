@@ -95,20 +95,20 @@ const transitionSetup = {
     })
     // Hide the leaving page while it is fully covered.
     .set(el, { opacity: 0 })
-    .set(overlayPath, {
-      attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
-    })
-    .to(overlayPath, {
-      duration: 0.3,
-      ease: 'power2.in',
-      attr: { d: 'M 0 100 V 50 Q 50 100 100 50 V 100 z' }
-    })
-    .to(overlayPath, {
-      duration: 0.8,
-      ease: 'power4',
-      attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
-    })
-    .set(overlay, { autoAlpha: 0 })
+    // .set(overlayPath, {
+    //   attr: { d: 'M 0 100 V 0 Q 50 0 100 0 V 100 z' }
+    // })
+    // .to(overlayPath, {
+    //   duration: 0.3,
+    //   ease: 'power2.in',
+    //   attr: { d: 'M 0 100 V 50 Q 50 100 100 50 V 100 z' }
+    // })
+    // .to(overlayPath, {
+    //   duration: 0.8,
+    //   ease: 'power4',
+    //   attr: { d: 'M 0 100 V 100 Q 50 100 100 100 V 100 z' }
+    // })
+    //.set(overlay, { autoAlpha: 0 })
   },
 };
 
