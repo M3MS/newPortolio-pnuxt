@@ -40,12 +40,12 @@ defineProps<{
 .site-footer {
   position: relative;
   width: 100%;
-  min-height: 50vh;
+  min-height: 50svh;
   mix-blend-mode: difference;
   background-color: $black;
   justify-content: center;
   align-items: center;
-  padding: 5svh 0;
+  padding: 10svh 0;
   color: $red;
 
   &__inner {
@@ -55,10 +55,6 @@ defineProps<{
   }
 
   .contact {
-    display: flex;
-    justify-content: space-between;
-    gap: 1.6rem;
-    position: relative;
     white-space: nowrap;
     line-height: 0.9;
     transition: all 0.3s ease;
@@ -76,14 +72,12 @@ defineProps<{
     width: 100%;
     justify-content: center;
     margin-top: 3svh;
+    margin-bottom: 90px;
     list-style: none;
+    padding: 0;
 
     a {
-      padding: 0 2vw;
-
-      &:hover {
-        transform: translateY(15);
-      }
+      padding: 0 2rem;
     }
   }
 
@@ -92,13 +86,14 @@ defineProps<{
     bottom: 1rem;
     left: 0;
     right: 0;
-    max-width: 70svw;
+    max-width: 90svw;
     margin: auto;
     justify-content: center;
     align-items: baseline;
     gap: 1.5rem;
     padding: 1rem;
     text-align: center;
+    line-height: 1;
 
     @media (min-width: 768px) {
         padding: 3rem;
