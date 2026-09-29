@@ -23,7 +23,7 @@
       "case_study": {
         "type": "Text",
         "config": {
-          "label": "Project",
+          "label": "Case Study",
           "placeholder": ""
         }
       },

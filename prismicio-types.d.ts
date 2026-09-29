@@ -162,7 +162,7 @@ interface ProjectDocumentData {
   hero: prismic.ImageField<never>;
 
   /**
-   * Project field in *Case Studies*
+   * Case Study field in *Case Studies*
    *
    * - **Field Type**: Text
    * - **Placeholder**: *None*

@@ -17,14 +17,15 @@ const [{ data: page }, { data: projects }] = await Promise.all([
   ),
   useAsyncData("project-navigation", () =>
     prismic.client.getAllByType("project", {
-      fetch: ["project.company"],
+      fetch: ["project.case_study", "project.company"],
       orderings: [{ field: "document.first_publication_date", direction: "desc" }],
     }),
   ),
 ]);
 
-const projectName = computed(() => prismic.asText(page.value?.data.project));
-const projectRole = computed(() => prismic.asText(page.value?.data.role));
+const projectName = computed(() => page.value?.data.case_study ?? "");
+const projectCompany = computed(() => page.value?.data.company ?? "");
+const projectRole = computed(() => page.value?.data.role ?? "");
 const technologies = computed(() =>
   (page.value?.data.tech_stack ?? "").split(/\s+-\s+|,/).map((item) => item.trim()).filter(Boolean),
 );
@@ -139,15 +140,15 @@ onBeforeUnmount(() => {
               <h2 class="project__label">Details</h2>
               <dl class="project__facts">
                 <div class="project__fact">
-                  <dt class="project__term">Company</dt>
-                  <dd class="project__value">{{ projectName }}</dd>
+                  <dt class="project__term">Company:</dt>
+                  <dd class="project__value">{{ projectCompany }}</dd>
                 </div>
                 <div class="project__fact">
-                  <dt class="project__term">Role</dt>
+                  <dt class="project__term">Role:</dt>
                   <dd class="project__value">{{ projectRole }}</dd>
                 </div>
                 <div v-if="technologies.length" class="project__fact project__fact--stack">
-                  <dt class="project__term">Built with</dt>
+                  <dt class="project__term">Built with:</dt>
                   <dd class="project__value">
                     <ul class="project__tags" aria-label="Technology stack">
                       <li v-for="technology in technologies" :key="technology" class="project__tag">
@@ -166,7 +167,7 @@ onBeforeUnmount(() => {
               :to="nextProject ? `/projects/${nextProject.uid}` : '/'"
               class="project__next"
             >
-              <span>{{ nextProject ? prismic.asText(nextProject.data.project) : "All projects" }}</span>
+              <span>{{ nextProject ? nextProject.data.case_study : "All projects" }}</span>
               <span class="project__arrow" aria-hidden="true">↗</span>
             </NuxtLink>
           </div>
@@ -255,7 +256,7 @@ onBeforeUnmount(() => {
           >
             <span class="project__label">{{ nextProject ? "Next project" : "Back to the archive" }}</span>
             <span class="project-gallery__next-title">
-              {{ nextProject ? prismic.asText(nextProject.data.project) : "All projects" }}
+              {{ nextProject ? nextProject.data.case_study : "All projects" }}
               <span aria-hidden="true">↗</span>
             </span>
           </NuxtLink>
@@ -267,9 +268,9 @@ onBeforeUnmount(() => {
 
 <style lang="scss" scoped>
   .project {
-    --project-gutter: clamp(2.4rem, 4vw, 7.2rem);
+    --project-gutter: clamp(1.6rem, 4vw, 7.2rem);
     color: $red;
-    padding-right: 4rem;
+    padding-right: 3rem;
 
     &__layout {
       display: grid;
@@ -319,7 +320,7 @@ onBeforeUnmount(() => {
       font-size: clamp(5.6rem, 16vw, 14rem);
       font-weight: bold;
       line-height: 0.9;
-      letter-spacing: -0.055em;
+      letter-spacing: -0.5rem;
       text-transform: uppercase;
       overflow-wrap: anywhere;
       -webkit-text-stroke: 1.5px $red;
@@ -329,7 +330,7 @@ onBeforeUnmount(() => {
     &__blob {
       position: absolute;
       z-index: -1;
-      inset: 0 -1rem -3rem 25%;
+      inset: 0 1rem -3rem 25%;
       opacity: 0.45;
       pointer-events: none;
       overflow: hidden;
@@ -358,7 +359,7 @@ onBeforeUnmount(() => {
 
     &__fact {
       display: grid;
-      grid-template-columns: 1fr 1.5fr;
+      grid-template-columns: 1fr 2fr;
       gap: 1.6rem;
       padding: 1.6rem 0;
       border-top: 1px solid rgba($red, 0.35);
@@ -387,8 +388,14 @@ onBeforeUnmount(() => {
     }
 
     &__navigation {
-      padding-top: 2.4rem;
-      border-top: 1px solid rgba($red, 0.35);
+      display: none;
+      
+
+      @media (min-width: 1100px) {
+        display: block;
+        padding-top: 2.4rem;
+        border-top: 1px solid rgba($red, 0.35);
+      }
     }
 
     &__next {
@@ -424,7 +431,7 @@ onBeforeUnmount(() => {
     }
 
     @media (min-width: 768px) {
-      padding-right: 8rem;
+      padding-right: 6rem;
     }
 
     @media (min-width: 1100px) {
@@ -510,6 +517,7 @@ onBeforeUnmount(() => {
 
     &__entry {
       min-width: 0;
+      margin-bottom: 1rem;
 
       &--text {
         padding: 3.2rem;
@@ -540,7 +548,7 @@ onBeforeUnmount(() => {
       display: grid;
       grid-template-columns: 3rem minmax(0, 1fr);
       gap: 1.6rem;
-      padding: 2rem 0 0.8rem;
+      padding: 1rem 0.5rem 0;
     }
 
     &__number {
