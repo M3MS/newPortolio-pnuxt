@@ -1,12 +1,12 @@
-#home {
+.home {
   .scroller {
     opacity: 0;
   }
 
   section {
     position: relative;
-    width: 100vw;
-    min-height: 60vh;
+    width: 100svw;
+    min-height: 60svh;
     mix-blend-mode: exclusion;
     z-index: 2;
   }
@@ -15,7 +15,7 @@
     display: flex;
     align-items: center;
     width: 100%;
-    height: 100vh;
+    height: 100svh;
 
     &__inner {
       position: relative;
@@ -70,7 +70,7 @@
       margin-bottom: 25svh;
 
       @media (min-width: 768px) {
-        max-width: 70vw;
+        max-width: 70svw;
         margin-bottom: 0;
       }
     }
@@ -85,7 +85,7 @@
       span {
         font-weight: bold;
         display: block;
-        margin-bottom: 8vh;
+        margin-bottom: 8svh;
       }
     }
   }

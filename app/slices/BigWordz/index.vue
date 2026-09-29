@@ -17,17 +17,17 @@ let ctx: any = null;
 
 onMounted(() => {
   ctx = gsap.context(() => {
-    split = SplitText.create(".intro-title", { type: "lines, words" });
+    split = SplitText.create(".intro-title", { type: "lines, words", mask: "lines" });
 
     const introTl = gsap.timeline({ delay: 2 });
 
     gsap.to(".intro-title", {
-      opacity: 1,
+      autoAlpha: 1,
     });
 
     split.words.forEach((word) => {
       introTl.from(word, {
-        opacity: 0,
+        autoAlpha: 0,
         y: 200,
         duration: 0.5,
         delay: 0.1,

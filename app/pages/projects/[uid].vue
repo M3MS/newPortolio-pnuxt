@@ -121,7 +121,7 @@ onBeforeUnmount(() => {
           aria-labelledby="project-title"
         >
           <div class="project__heading">
-            <NuxtLink to="/" class="project__back">
+            <NuxtLink :to="{ path: '/', hash: '#work' }" class="project__back">
               <span aria-hidden="true">↖</span> All projects
             </NuxtLink>
             <div class="project__masthead">

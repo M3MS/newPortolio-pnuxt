@@ -93,12 +93,6 @@ small {
   text-transform: uppercase;
 }
 
-.text-split > div,
-.intro-title > div {
-  position: relative;
-  overflow: hidden;
-}
-
 .hollow-text {
   -webkit-text-stroke: 2px $white;
   -webkit-text-fill-color: transparent;
